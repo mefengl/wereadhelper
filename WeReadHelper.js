@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   Violentmonkey Scripts
-// @version      4.5
+// @version      4.6
 // @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：宽度保持👁；
 // @author       mefengl
 // @match        https://weread.qq.com/web/reader/*

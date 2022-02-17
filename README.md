@@ -14,4 +14,6 @@
 
 ## 声明 👀
 
+> 📝 本项目[WeRead-Helper](https://github.com/mefengl/WeRead-Helper)开源，欢迎读书爱好者在GitHub提issue，优化代码。
+
 > 🎈 本脚本参考了xvusrmqj的“微信读书加宽度”和Lossj的“微信读书沉浸式阅读”的功能。
