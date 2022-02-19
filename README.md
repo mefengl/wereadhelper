@@ -2,10 +2,10 @@
 
 读书人用的脚本。
 
-GreasyFork：[📘微信读书阅读助手](https://greasyfork.org/zh-CN/scripts/420774-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E9%98%85%E8%AF%BB%E5%8A%A9%E6%89%8B)
+> [安装地址](https://greasyfork.org/zh-CN/scripts/420774-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E9%98%85%E8%AF%BB%E5%8A%A9%E6%89%8B)
 
 ## 功能 1️⃣：自动隐藏顶栏和侧边
-> 🥡 上划显示，下滑隐藏
+> 🥡 上划显示，下滑隐藏。
 
 ## 功能 2️⃣：半透明顶栏和侧边
 > 😶‍🌫️ 小小的改动，用了才知道有多棒。
