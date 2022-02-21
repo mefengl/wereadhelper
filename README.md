@@ -2,7 +2,7 @@
 
 读书人用的脚本。
 
-> [安装地址](https://greasyfork.org/zh-CN/scripts/420774-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E9%98%85%E8%AF%BB%E5%8A%A9%E6%89%8B)
+> [安装地址](https://greasyfork.org/scripts/420774-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E9%98%85%E8%AF%BB%E5%8A%A9%E6%89%8B/code/%F0%9F%93%98%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E9%98%85%E8%AF%BB%E5%8A%A9%E6%89%8B.user.js)
 
 ## 功能 1️⃣：自动隐藏顶栏和侧边
 > 🥡 上划显示，下滑隐藏。
