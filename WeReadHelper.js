@@ -1,8 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.0.0
-// @note         22-04-05 5.0.0 添加 功能4️⃣：一键搜📗豆瓣阅读或📙得到阅读
+// @version      5.0.1
 // @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：宽度保持👁；功能4️⃣：一键搜📗豆瓣阅读或📙得到阅读
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -75,6 +74,7 @@
     const className = mutationsList[0].target.className;
     if (/search_show/.test(className)) {
       // 添加按钮
+      if (get_searchBox().parentElement.lastChild.tagName == "BUTTON") return;
       add_btn(create_btn(...douban_info));
       add_btn(create_btn(...dedao_info));
     }
