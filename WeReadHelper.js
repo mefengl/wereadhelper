@@ -80,7 +80,7 @@
       // 建议元素下移，避免遮挡按钮
       document.body.getElementsByClassName(
         "search_suggest_keyword_container"
-      )[0].style.top = "288px";
+      )[0].style.marginTop = "3.4em";
     }
   };
   const mutationObserver = new MutationObserver(handleListenChange);
