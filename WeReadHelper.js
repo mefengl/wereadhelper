@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.0.3
+// @version      5.0.4
 // @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：宽度保持👁；功能4️⃣：一键搜📗豆瓣阅读或📙得到阅读
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -80,7 +80,7 @@
       // 建议元素下移，避免遮挡按钮
       document.body.getElementsByClassName(
         "search_suggest_keyword_container"
-      )[0].style.marginTop = "3.4em";
+      )[0].style.marginTop = "2.3em";
     }
   };
   const mutationObserver = new MutationObserver(handleListenChange);
