@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.0.4
-// @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：宽度保持👁；功能4️⃣：一键搜📗豆瓣阅读或📙得到阅读
+// @version      5.1.1
+// @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：宽度保持👁；功能4️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手
 // @author       mefengl
 // @match        https://weread.qq.com/*
 // @require      https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js
@@ -58,15 +58,25 @@
 
   // 功能4️⃣：一键搜📗豆瓣阅读或📙得到阅读
 
+  const dedao_info = [
+    "https://www.dedao.cn/search/result?q=",
+    "得到阅读",
+    "#b5703e",
+  ];
   const douban_info = [
     "https://read.douban.com/search?q=",
     "豆瓣阅读",
     "#389eac",
   ];
-  const dedao_info = [
-    "https://www.dedao.cn/search/result?q=",
-    "得到阅读",
-    "#b5703e",
+  const kongfuzi_info = [
+    "https://search.kongfz.com/product_result/?key=",
+    "孔夫子",
+    "#701b22",
+  ];
+  const duozhuayu_info = [
+    "https://www.duozhuayu.com/search/book/",
+    "多抓鱼",
+    "#497849",
   ];
 
   // 监听页面是否是搜索页面
@@ -75,8 +85,14 @@
     if (/search_show/.test(className)) {
       // 添加按钮
       if (get_searchBox().parentElement.lastChild.tagName == "BUTTON") return;
-      add_btn(create_btn(...douban_info));
-      add_btn(create_btn(...dedao_info));
+      add_multi_btn(
+        add_btn,
+        create_btn,
+        dedao_info,
+        douban_info,
+        kongfuzi_info,
+        duozhuayu_info
+      );
       // 建议元素下移，避免遮挡按钮
       document.body.getElementsByClassName(
         "search_suggest_keyword_container"
@@ -119,3 +135,9 @@
     searchBox.parentElement.insertBefore(btn, searchBox.nextSibling);
   }
 })();
+// 添加按钮们
+function add_multi_btn(add_btn, create_btn, ...info_list) {
+  info_list.reverse().forEach((info) => {
+    add_btn(create_btn(...info));
+  });
+}
