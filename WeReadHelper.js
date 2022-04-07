@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.1.2
+// @version      5.1.1
 // @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：宽度保持👁；功能4️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -70,12 +70,12 @@
   ];
   const kongfuzi_info = [
     "https://search.kongfz.com/product_result/?key=",
-    "孔夫子 二手书",
+    "孔夫子",
     "#701b22",
   ];
   const duozhuayu_info = [
     "https://www.duozhuayu.com/search/book/",
-    "多抓鱼 二手书",
+    "多抓鱼",
     "#497849",
   ];
 
