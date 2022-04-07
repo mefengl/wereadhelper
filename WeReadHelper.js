@@ -2,7 +2,7 @@
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
 // @version      5.1.1
-// @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：宽度保持👁；功能4️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手
+// @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁
 // @author       mefengl
 // @match        https://weread.qq.com/*
 // @require      https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js
@@ -56,7 +56,7 @@
     }
   });
 
-  // 功能4️⃣：一键搜📗豆瓣阅读或📙得到阅读
+  // 功能3️⃣：一键搜📗豆瓣阅读或📙得到阅读
 
   const dedao_info = [
     "https://www.dedao.cn/search/result?q=",
