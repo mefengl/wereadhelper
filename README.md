@@ -1,6 +1,6 @@
 # 📘 微信读书阅读助手
 
-[![WeRead-Helper](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com/mefengl/WeRead-Helper)
+[![wereadhelper](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com/mefengl/wereadhelper)
 [![](https://img.shields.io/badge/Weibo-微博-orange)](https://weibo.com/u/7752747770)
 
 读书人用的脚本。
@@ -23,6 +23,6 @@
 
 ## 声明 👀
 
-> 📝 本项目[WeRead-Helper](https://github.com/mefengl/WeRead-Helper)开源，欢迎读书爱好者在 GitHub 提 issue，优化代码。
+> 📝 本项目[wereadhelper](https://github.com/mefengl/wereadhelper)开源，欢迎读书爱好者在 GitHub 提 issue，优化代码。
 
 > 🎈 本脚本参考了 xvusrmqj 的“微信读书加宽度”和 Lossj 的“微信读书沉浸式阅读”的功能。
