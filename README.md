@@ -25,4 +25,6 @@
 
 > 📝 本项目[wereadhelper](https://github.com/mefengl/wereadhelper)开源，欢迎读书爱好者在 GitHub 提 issue，优化代码。
 
-> 🎈 本脚本参考了 xvusrmqj 的“微信读书加宽度”和 Lossj 的“微信读书沉浸式阅读”的功能。
+> 🥰 自来水友链， [豆瓣读书助手](https://greasyfork.org/zh-CN/scripts/412479-ebooks-assistant) 帮我许多。
+
+> 🎈 本脚本早期代码参考了 xvusrmqj 的“微信读书加宽度”和 Lossj 的“微信读书沉浸式阅读”的功能。
