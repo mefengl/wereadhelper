@@ -1,6 +1,6 @@
 # 📘 微信读书阅读助手
 
-[![wereadhelper](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com/mefengl/wereadhelper)
+[![wereadhelper](https://badgen.net/badge/icon/GitHub?icon=github&label)](https://github.com/mefengl/wereadhelper)
 [![](https://img.shields.io/badge/Weibo-微博-orange)](https://weibo.com/u/7752747770)
 
 读书人用的脚本。
