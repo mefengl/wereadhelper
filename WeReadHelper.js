@@ -68,6 +68,11 @@
     "豆瓣阅读",
     "#389eac",
   ];
+  const douban_book_info = [
+    "https://search.douban.com/book/subject_search?search_text=",
+    "豆瓣读书",
+    "#027711",
+  ];
   const kongfuzi_info = [
     "https://search.kongfz.com/product_result/?key=",
     "孔夫子",
@@ -77,11 +82,6 @@
     "https://www.duozhuayu.com/search/book/",
     "多抓鱼",
     "#497849",
-  ];
-  const douban_book_info = [
-    "https://search.douban.com/book/subject_search?search_text=",
-    "豆瓣读书",
-    "#027711",
   ];
 
   // 监听页面是否是搜索页面
@@ -95,9 +95,9 @@
         create_btn,
         dedao_info,
         douban_info,
+        douban_book_info,
         kongfuzi_info,
         duozhuayu_info,
-        douban_book_info
       );
       // 建议元素下移，避免遮挡按钮
       document.body.getElementsByClassName(
