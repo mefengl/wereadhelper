@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.1.1
+// @version      5.2.1
 // @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -78,6 +78,11 @@
     "多抓鱼",
     "#497849",
   ];
+  const douban_book_info = [
+    "https://search.douban.com/book/subject_search?search_text=",
+    "豆瓣读书",
+    "#027711",
+  ];
 
   // 监听页面是否是搜索页面
   const handleListenChange = (mutationsList) => {
@@ -91,7 +96,8 @@
         dedao_info,
         douban_info,
         kongfuzi_info,
-        duozhuayu_info
+        duozhuayu_info,
+        douban_book_info
       );
       // 建议元素下移，避免遮挡按钮
       document.body.getElementsByClassName(
