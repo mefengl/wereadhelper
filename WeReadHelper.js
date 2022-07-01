@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.2.2
+// @version      5.3.2
 // @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -16,6 +16,7 @@
   ("use strict");
 
   var step = 0; // 🔧：修改宽度只需调节参数即可，❌：0为不修改
+  const simple_underline = false; // true为简单下划线，即工具栏中的删除荧光、波浪线划线和搜索，false不变
 
   // 功能1️⃣：宽屏
   function getCurrentMaxWidth(element) {
@@ -57,7 +58,6 @@
   });
 
   // 功能3️⃣：一键搜📗豆瓣阅读或📙得到阅读
-
   const dedao_info = [
     "https://www.dedao.cn/search/result?q=",
     "得到阅读",
@@ -83,7 +83,6 @@
     "多抓鱼",
     "#497849",
   ];
-
   // 监听页面是否是搜索页面
   const handleListenChange = (mutationsList) => {
     const className = mutationsList[0].target.className;
@@ -140,10 +139,30 @@
     const searchBox = get_searchBox();
     searchBox.parentElement.insertBefore(btn, searchBox.nextSibling);
   }
+  // 添加按钮们
+  function add_multi_btn(add_btn, create_btn, ...info_list) {
+    info_list.reverse().forEach((info) => {
+      add_btn(create_btn(...info));
+    });
+  }
+
+  // 功能4️⃣：隐藏荧光和波浪划线样式和搜索（默认不开启
+  if (simple_underline) {
+    // 监听页面是否弹出工具框
+    const handleListenChange = (mutationsList) => {
+      const className = mutationsList[0].target.className;
+      if (/reader_toolbar_container/.test(className)) {
+        document.getElementsByClassName('underlineBg')[0].style.display = 'none';
+        document.getElementsByClassName('underlineHandWrite')[0].style.display = 'none';
+        document.getElementsByClassName('query')[0].style.display = 'none';
+      }
+    };
+    const mutationObserver = new MutationObserver(handleListenChange);
+    const element = document.body;
+    const options = {
+      attributes: true,
+      subtree: true
+    };
+    mutationObserver.observe(element, options);
+  }
 })();
-// 添加按钮们
-function add_multi_btn(add_btn, create_btn, ...info_list) {
-  info_list.reverse().forEach((info) => {
-    add_btn(create_btn(...info));
-  });
-}
