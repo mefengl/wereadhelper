@@ -11,21 +11,21 @@
 ## 功能 1️⃣：优雅隐藏顶栏和侧边栏
 
 > 🥡 上划显示，下滑隐藏
->
+
 > 😶‍🌫️ 半透明的边栏，用了才知道有多棒
 
 ## 功能 2️⃣：简化复杂的划线菜单
 
-> 📌 简简单单的菜单，简简单单的划线
+> 🍵 简简单单划线，简简单单读书
 
-此处开启：
-
-<img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBekpaQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--1e9a25f2bc1366e9784699ade8667ab274db7f04/2022-09-03_07-12-24.png?locale=zh-CN" width="700">
+> 此处开启：
+>
+> <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBekpaQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--1e9a25f2bc1366e9784699ade8667ab274db7f04/2022-09-03_07-12-24.png?locale=zh-CN" width="700">
 
 ## 功能 3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手
 
 > 🕵️‍♀️ `微信读书`查无此书？到`豆瓣阅读`或`得到阅读`试试吧
->
+
 > 🤠️ 还找不到？到`孔夫子`或`多抓鱼`淘本便宜的二手书~
 
 ## 声明 👀
