@@ -19,7 +19,8 @@
 > 📌 简简单单的菜单，简简单单的划线
 
 此处开启：
-![简化划线菜单](https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBekpaQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--1e9a25f2bc1366e9784699ade8667ab274db7f04/2022-09-03_07-12-24.png?locale=zh-CN)
+
+<img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBekpaQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--1e9a25f2bc1366e9784699ade8667ab274db7f04/2022-09-03_07-12-24.png?locale=zh-CN" width="700">
 
 ## 功能 3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手
 
