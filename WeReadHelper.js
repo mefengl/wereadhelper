@@ -1,14 +1,18 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.3.3
-// @description  现有功能✔：功能1️⃣：自动隐藏顶栏和侧边栏📌；功能2️⃣：半透明顶栏和侧边栏🦋；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁
+// @version      5.4.3
+// @description  现有功能✔：功能1️⃣：优雅隐藏顶栏和侧边栏🦋；功能2️⃣：简化复杂的划线菜单📌；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁
 // @author       mefengl
 // @match        https://weread.qq.com/*
 // @require      https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js
 // @grant        GM_log
 // @grant        GM_addStyle
 // @grant        GM_openInTab
+// @grant        GM_registerMenuCommand
+// @grant        GM_unregisterMenuCommand
+// @grant        GM_getValue
+// @grant        GM_setValue
 // @license MIT
 // ==/UserScript==
 
@@ -16,7 +20,6 @@
   ("use strict");
 
   var step = 0; // 🔧：修改宽度只需调节参数即可，❌：0为不修改
-  const simple_underline = false; // true为简单下划线，即工具栏中的删除荧光、波浪线划线和搜索，false不变
 
   // 功能1️⃣：宽屏
   function getCurrentMaxWidth(element) {
@@ -146,8 +149,37 @@
     });
   }
 
+
   // 功能4️⃣：隐藏荧光和波浪划线样式和搜索（默认不开启
-  if (simple_underline) {
+  const default_menu_all = {
+    'simplify_underline': false
+  }
+  const menu_all = GM_getValue('menu_all', default_menu_all);
+  const menu_id = GM_getValue('menu_id', {})
+  function update_menu() {
+    for (let name in menu_all) {
+      const value = menu_all[name]
+      switch (name) {
+        case 'simplify_underline':
+          // 卸载原来的
+          if (menu_id[name]) {
+            GM_unregisterMenuCommand(menu_id[name]);
+          }
+          // 添加新的
+          menu_id[name] = GM_registerMenuCommand(' 简化划线：' + (value ? '✅' : '❌'), () => {
+            menu_all[name] = !menu_all[name];
+            GM_setValue('menu_all', menu_all);
+            // 调用时触发，刷新菜单
+            update_menu();
+            // 该设置需刷新生效
+            location.reload()
+          })
+          GM_setValue('menu_id', menu_id);
+      }
+    }
+  }
+  update_menu();
+  if (menu_all.simplify_underline) {
     // 监听页面是否弹出工具框
     const handleListenChange = (mutationsList) => {
       const className = mutationsList[0].target.className;
