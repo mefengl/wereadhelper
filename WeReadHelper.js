@@ -21,6 +21,40 @@
 
   var step = 0; // 🔧：修改宽度只需调节参数即可，❌：0为不修改
 
+
+  // 功能5️⃣：统计阅读数据
+  const daily_chapter_count = GM_getValue('daily_chapter_count', {});
+  const add_one_chapter_count = () => {
+    const now = new Date();
+    const today = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate();
+    if (today in daily_chapter_count) {
+      daily_chapter_count[today] += 1
+    } else {
+      daily_chapter_count[today] = 0
+    }
+    GM_setValue('daily_chapter_count', daily_chapter_count);
+    alert(daily_chapter_count[today]);
+  }
+  {
+    // 监听页面是否到页底，会多次到达页底，但只会添加一个监听
+    const handleListenChange = (mutationsList) => {
+      const className = mutationsList[0].target.className;
+      if (/readerBottomBar/.test(className)) {
+        const nextPageBtn = document.getElementsByClassName("readerFooter_button")[0];
+        // 使用相同外部函数，监听之前先去除，是防止重复添加的一种方法
+        nextPageBtn.removeEventListener("click", add_one_chapter_count)
+        nextPageBtn.addEventListener("click", add_one_chapter_count);
+      }
+    };
+    const mutationObserver = new MutationObserver(handleListenChange);
+    const element = document.body;
+    const options = {
+      attributes: true,
+      subtree: true
+    };
+    mutationObserver.observe(element, options);
+  }
+
   // 功能1️⃣：宽屏
   function getCurrentMaxWidth(element) {
     if (!element) return;
