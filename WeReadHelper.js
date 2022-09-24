@@ -33,7 +33,7 @@
       daily_chapter_count[today] = 0
     }
     GM_setValue('daily_chapter_count', daily_chapter_count);
-    alert(daily_chapter_count[today]);
+    console.log(daily_chapter_count[today]);
   }
   {
     // 监听页面是否到页底，会多次到达页底，但只会添加一个监听
