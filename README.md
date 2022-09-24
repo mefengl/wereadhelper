@@ -11,24 +11,34 @@
 ## 功能 1️⃣：优雅隐藏顶栏和侧边栏
 
 > 🥡 上划显示，下滑隐藏
-
+>
 > 😶‍🌫️ 半透明的边栏，用了才知道有多棒
 
-## 功能 2️⃣：简化复杂的划线菜单
+## 功能 2️⃣：简化复杂的划线菜单*
 
 > 🍵 简简单单划线，简简单单读书
-
-> 此处开启：
 >
-> <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBekpaQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--1e9a25f2bc1366e9784699ade8667ab274db7f04/2022-09-03_07-12-24.png?locale=zh-CN" width="700">
+> <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBek5aQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8ea9dea15b9d2bcdc675f0c62fa9914043c2a812/2022-09-03_07-16-35.png" width="350">
 
 ## 功能 3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手
 
 > 🕵️‍♀️ `微信读书`查无此书？到`豆瓣阅读`或`得到阅读`试试吧
-
+>
 > 🤠️ 还找不到？到`孔夫子`或`多抓鱼`淘本便宜的二手书~
+>
+> <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMWRoQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--dd6eedaa17e5df21f4a6798e3b5757584e929ad8/SCR-20220924-r4s.png?locale=zh-CN" width="350">
 
-## 声明 👀
+## 功能 4️⃣：翻页声*
+
+> 🎵 翻页的声音，真的很美
+
+## 指南 👀
+
+> *表示默认关闭
+>
+> 在此开启关闭的功能：
+>
+> <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMVpoQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--464ba7e421f20ee328439e9e0dca9bfb9aac8899/SCR-20220924-r52.png?locale=zh-CN" width="350">
 
 > 📝 本项目[wereadhelper](https://github.com/mefengl/wereadhelper)开源，欢迎读书爱好者在 GitHub 提 issue，优化代码
 
