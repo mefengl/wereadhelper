@@ -20,9 +20,6 @@
 
 > <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBek5aQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8ea9dea15b9d2bcdc675f0c62fa9914043c2a812/2022-09-03_07-16-35.png" width="450">
 
-> ⚙️ 默认关闭，开启方式见后文
-
-
 ## 功能 3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手
 
 > 🕵️‍♀️ `微信读书`查无此书？到`豆瓣阅读`或`得到阅读`试试吧
@@ -34,8 +31,6 @@
 ## 功能 4️⃣：翻页声
 
 > 🎵 翻页的声音，也许很美
-
-> ⚙️ 默认关闭，开启方式见后文
 
 ## 设置 ⚙
 
