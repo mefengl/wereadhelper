@@ -36,6 +36,8 @@
 
 > <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMVpoQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--464ba7e421f20ee328439e9e0dca9bfb9aac8899/SCR-20220924-r52.png?locale=zh-CN" width="450">  
 
+> 🫣 也许能在这里发现更多功能，谁知道呢
+
 ## 声明 👀
 
 > 📝 本项目[wereadhelper](https://github.com/mefengl/wereadhelper)开源，欢迎读书爱好者在 GitHub 提 issue，优化代码
