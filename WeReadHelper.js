@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.7.6
+// @version      5.7.7
 // @description  现有功能✔：功能1️⃣：优雅隐藏顶栏和侧边栏🦋；功能2️⃣：简化复杂的划线菜单📌；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁；功能4️⃣：翻页可以有翻页声📖
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -104,9 +104,7 @@
         duozhuayu_info,
       );
       // 建议元素下移，避免遮挡按钮
-      document.body.getElementsByClassName(
-        "search_suggest_keyword_container"
-      )[0].style.marginTop = "2.3em";
+      $(".search_suggest_keyword_container").css("margin-top", "2.3em");
     }
   };
   const mutationObserver = new MutationObserver(handleListenChange);
@@ -118,7 +116,7 @@
   mutationObserver.observe(element, options);
 
   function get_searchBox() {
-    return document.body.getElementsByClassName("search_input_text")[0];
+    return $(".search_input_text")[0];
   }
 
   function create_btn(searchUrl, name, color = "#fff") {
@@ -132,11 +130,13 @@
     return btn;
 
     function add_btn_style() {
-      btn.style.backgroundColor = color;
-      btn.style.color = "#fff";
-      btn.style.borderRadius = "1em";
-      btn.style.margin = ".5em";
-      btn.style.padding = ".5em";
+      $(btn).css({
+        backgroundColor: color,
+        color: "#fff",
+        borderRadius: "1em",
+        margin: ".5em",
+        padding: ".5em",
+      });
     }
   }
 
