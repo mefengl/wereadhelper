@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.7.7
+// @version      5.7.8
 // @description  现有功能✔：功能1️⃣：优雅隐藏顶栏和侧边栏🦋；功能2️⃣：简化复杂的划线菜单📌；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁；功能4️⃣：翻页可以有翻页声📖
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -44,20 +44,17 @@
   var windowTop = 0;
   $(window).scroll(function () {
     let scrollS = $(this).scrollTop();
-    let selBtn = document.querySelector(".readerTopBar");
-    let readerControl = document.querySelector(".readerControls");
+    const $readerTopBar = $(".readerTopBar");
+    const $readerControls = $(".readerControls");
     if (scrollS >= windowTop + 100) {
-      // 上划显示
-      selBtn.style.opacity = 0;
-      readerControl.style.opacity = 0;
-      windowTop = scrollS;
-      // 顺便隐藏某些推广按钮
-      $('.lecture').remove();
-      $('.download').remove();
-    } else if (scrollS < windowTop) {
       // 下滑隐藏
-      selBtn.style.opacity = 0.4;
-      readerControl.style.opacity = 0.4;
+      $readerTopBar.fadeOut();
+      $readerControls.fadeOut();
+      windowTop = scrollS;
+    } else if (scrollS < windowTop) {
+      // 上划显示
+      $readerTopBar.fadeIn();
+      $readerControls.fadeIn();
       windowTop = scrollS;
     }
   });
@@ -298,6 +295,11 @@
     for (let i = 1; i < 4; ++i) {
       $(separators[i]).remove();
     }
+    // 阅读界面的听书和手机阅读的按钮
+    $('.lecture').hide();
+    $('.download').hide();
+    $(".readerTopBar").stop().css("opacity", "0.6");
+    $(".readerControls").stop().css("opacity", "0.8");
   }
 
 })();
