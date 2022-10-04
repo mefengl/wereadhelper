@@ -1,11 +1,15 @@
 # 📘 微信读书阅读助手
 
-[![wereadhelper](https://badgen.net/badge/icon/GitHub?icon=github&label)](https://github.com/mefengl/wereadhelper)
-[![](https://img.shields.io/badge/Weibo-微博-orange)](https://weibo.com/u/7752747770)
+<a href="https://weibo.com/u/7752747770"> <img src="https://img.shields.io/badge/Weibo-微博-orange"/> </a>
+<a href="https://github.com/mefengl/wereadhelper"> <img src="https://img.shields.io/github/stars/mefengl/wereadhelper?style=social"/> </a>
+<a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/greasyfork/l/420774?color=&label=License"/> </a>
+
+<a href="https://greasyfork.org/zh-CN/scripts/420774/stats"> <img src="https://img.shields.io/greasyfork/dd/420774"/> </a>
+<a href="https://greasyfork.org/zh-CN/scripts/420774/stats"> <img src="https://img.shields.io/greasyfork/dt/420774"/> </a>
 
 读书人用的脚本
 
-> [安装地址](https://greasyfork.org/zh-CN/scripts/420774-%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E9%98%85%E8%AF%BB%E5%8A%A9%E6%89%8B)
+> [安装地址](https://greasyfork.org/zh-CN/scripts/420774)
 
 
 ## 功能 1️⃣：优雅隐藏顶栏和侧边栏
