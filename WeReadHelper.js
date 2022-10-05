@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.7.8
+// @version      5.8.0
 // @description  现有功能✔：功能1️⃣：优雅隐藏顶栏和侧边栏🦋；功能2️⃣：简化复杂的划线菜单📌；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁；功能4️⃣：翻页可以有翻页声📖
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -18,27 +18,11 @@
 
 (function () {
   ("use strict");
-  var step = 0; // 🔧：修改宽度只需调节参数即可，❌：0为不修改
 
   // 功能1️⃣：宽屏
-  function getCurrentMaxWidth(element) {
-    if (!element) return;
-    let currentValue = window.getComputedStyle(element).maxWidth;
-    currentValue = currentValue.substring(0, currentValue.indexOf("px"));
-    currentValue = parseInt(currentValue);
-    return currentValue > 1000 ? currentValue : 1000;
-  }
-  function changeWidth() {
-    const item = document.querySelector(".readerContent .app_content");
-    if (!item) return;
-    const currentValue = getCurrentMaxWidth(item);
-    let changedValue;
-    changedValue = currentValue + step;
-    item.style["max-width"] = changedValue + "px";
-    const myEvent = new Event("resize");
-    window.dispatchEvent(myEvent);
-  }
-  changeWidth();
+  $(function () {
+    $(".app_content").css("maxWidth", 1000)
+  })
 
   // 功能2️⃣：自动隐藏顶栏和侧边栏，上划显示，下滑隐藏
   var windowTop = 0;
@@ -298,7 +282,10 @@
     // 阅读界面的听书和手机阅读的按钮
     $('.lecture').hide();
     $('.download').hide();
-    $(".readerTopBar").stop().css("opacity", "0.6");
+    $(".readerTopBar").stop().css({
+      "maxWidth": "1000px",
+      "opacity": "0.6",
+    });
     $(".readerControls").stop().css("opacity", "0.8");
   }
 
