@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.8.0
+// @version      5.8.1
 // @description  现有功能✔：功能1️⃣：优雅隐藏顶栏和侧边栏🦋；功能2️⃣：简化复杂的划线菜单📌；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁；功能4️⃣：翻页可以有翻页声📖
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -270,6 +270,8 @@
     $(document).ready(removeAds);
   }
   function removeAds() {
+    const $login = $(".navBar_link_Login");
+    $login.detach();
     const ads = [".shelf_header", ".navBar_link_ink", ".navBar_link_Phone", ".ranking_topCategory_container", ".recommend_preview_container", ".app_footer_copyright"]
     for (const ad of ads) {
       $(ad).remove();
@@ -279,6 +281,7 @@
     for (let i = 1; i < 4; ++i) {
       $(separators[i]).remove();
     }
+    $login.appendTo(".navBar_inner");
     // 阅读界面的听书和手机阅读的按钮
     $('.lecture').hide();
     $('.download').hide();
