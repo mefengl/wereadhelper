@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.8.2
+// @version      5.8.3
 // @description  现有功能✔：功能1️⃣：优雅隐藏顶栏和侧边栏🦋；功能2️⃣：简化复杂的划线菜单📌；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁；功能4️⃣：翻页可以有翻页声📖
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -49,15 +49,15 @@
     "豆瓣读书",
     "#027711",
   ];
-  const dedao_info = [
-    "https://www.dedao.cn/search/result?q=",
-    "得到阅读",
-    "#b5703e",
-  ];
   const douban_info = [
     "https://read.douban.com/search?q=",
     "豆瓣阅读",
     "#389eac",
+  ];
+  const dedao_info = [
+    "https://www.dedao.cn/search/result?q=",
+    "得到阅读",
+    "#b5703e",
   ];
   const kongfuzi_info = [
     "https://search.kongfz.com/product_result/?key=",
@@ -79,8 +79,8 @@
         add_btn,
         create_btn,
         douban_book_info,
-        dedao_info,
         douban_info,
+        dedao_info,
         kongfuzi_info,
         duozhuayu_info,
       );
