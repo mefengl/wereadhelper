@@ -264,10 +264,10 @@
         // 使用相同外部函数，监听之前先去除，是防止重复添加的一种方法
         try {
           nextPageBtn.removeEventListener("click", add_one_chapter_count);
-        } catch (e) {}
+        } catch (e) { }
         try {
           nextPageBtn.addEventListener("click", add_one_chapter_count);
-        } catch (e) {}
+        } catch (e) { }
       }
     };
     const mutationObserver = new MutationObserver(handleListenChange);
