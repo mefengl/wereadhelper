@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.8.4
+// @version      5.9.0
 // @description  现有功能✔：功能1️⃣：优雅隐藏顶栏和侧边栏🦋；功能2️⃣：简化复杂的划线菜单📌；功能3️⃣：一键搜豆瓣、得到电子书，还可在孔夫子、多抓鱼买二手👁；功能4️⃣：翻页可以有翻页声📖
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -313,13 +313,25 @@
     $(".readerControls").stop().css("opacity", "0.8");
   }
 
-  // 🚧 功能7️⃣：Ctrl/Command + Enter，提交笔记（不用点提交按钮）
-  // TODO: 需要在笔记框页面出现后绑定事件
-  // $(function () {
-  //   $('#WriteBookReview').keydown((e) => {
-  //     if ((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey)) {
-  //       $('.writeReview_submit_button').click();
-  //     }
-  //   })
-  // });
+  // 功能7️⃣：Ctrl/Command + Enter，提交笔记（不用点提交按钮）
+  {
+    // 监听页面是否是想法页面
+    const handleListenChange = (mutationsList) => {
+      const className = mutationsList[1].target.className;
+      if (/readerWriteReviewPanel/.test(className)) {
+        $('#WriteBookReview').keydown((e) => {
+          if ((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey)) {
+            $('.writeReview_submit_button').click();
+          }
+        })
+      }
+    };
+    const mutationObserver = new MutationObserver(handleListenChange);
+    const element = document.body;
+    const options = {
+      attributes: true,
+      subtree: true,
+    };
+    mutationObserver.observe(element, options);
+  }
 })();

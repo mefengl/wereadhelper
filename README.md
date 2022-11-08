@@ -11,7 +11,6 @@
 
 > [安装地址](https://greasyfork.org/zh-CN/scripts/420774)
 
-
 ## 功能 1️⃣：优雅隐藏顶栏和侧边栏
 
 > 🥡 上划显示，下滑隐藏
@@ -36,9 +35,13 @@
 
 > 🎵 翻页的声音，也许很美
 
+## 小功能 🦴
+
+> 不用点提交按钮，`Ctrl + Enter` 也可以提交想法了
+
 ## 设置 ⚙
 
-> <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMVpoQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--464ba7e421f20ee328439e9e0dca9bfb9aac8899/SCR-20220924-r52.png?locale=zh-CN" width="450">  
+> <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMVpoQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--464ba7e421f20ee328439e9e0dca9bfb9aac8899/SCR-20220924-r52.png?locale=zh-CN" width="450">
 
 > 🫣 也许能在这里发现更多功能，谁知道呢
 
