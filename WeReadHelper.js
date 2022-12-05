@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.9.2
+// @version      5.10.0
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -23,112 +23,53 @@
   });
 
   // 功能2️⃣：自动隐藏顶栏和侧边栏，上划显示，下滑隐藏
-  var windowTop = 0;
-  $(window).scroll(function () {
-    let scrollS = $(this).scrollTop();
-    const $readerTopBar = $(".readerTopBar");
-    const $readerControls = $(".readerControls");
+  let windowTop = 0;
+  $(window).scroll(() => {
+    const scrollS = $(this).scrollTop();
     if (scrollS >= windowTop + 100) {
       // 下滑隐藏
-      $readerTopBar.fadeOut();
-      $readerControls.fadeOut();
+      $(".readerTopBar, .readerControls").fadeOut();
       windowTop = scrollS;
-    } else if (scrollS < windowTop) {
+    }
+    else if (scrollS < windowTop) {
       // 上划显示
-      $readerTopBar.fadeIn();
-      $readerControls.fadeIn();
+      $(".readerTopBar, .readerControls").fadeIn();
       windowTop = scrollS;
     }
   });
 
   // 功能3️⃣：一键搜📗豆瓣阅读或📙得到阅读
-  const douban_book_info = [
-    "https://search.douban.com/book/subject_search?search_text=",
-    "豆瓣读书",
-    "#027711",
-  ];
-  const douban_info = [
-    "https://read.douban.com/search?q=",
-    "豆瓣阅读",
-    "#389eac",
-  ];
-  const dedao_info = [
-    "https://www.dedao.cn/search/result?q=",
-    "得到阅读",
-    "#b5703e",
-  ];
-  const kongfuzi_info = [
-    "https://search.kongfz.com/product_result/?key=",
-    "孔夫子",
-    "#701b22",
-  ];
-  const duozhuayu_info = [
-    "https://www.duozhuayu.com/search/book/",
-    "多抓鱼",
-    "#497849",
-  ];
   // 监听页面是否是搜索页面
   const handleListenChange = (mutationsList) => {
     const className = mutationsList[0].target.className;
     if (/search_show/.test(className)) {
-      // 添加按钮
+      // 开始添加按钮
       if (get_searchBox().parentElement.lastChild.tagName == "BUTTON") return;
-      add_multi_btn(
-        add_btn,
-        create_btn,
-        douban_book_info,
-        douban_info,
-        dedao_info,
-        kongfuzi_info,
-        duozhuayu_info
+      // 添加按钮们
+      [
+        { name: "豆瓣读书", color: "#027711", searchUrl: "https://search.douban.com/book/subject_search?search_text=", },
+        { name: "豆瓣阅读", color: "#389eac", searchUrl: "https://read.douban.com/search?q=", },
+        { name: "得到阅读", color: "#b5703e", searchUrl: "https://www.dedao.cn/search/result?q=", },
+        { name: "孔夫子", color: "#701b22", searchUrl: "https://search.kongfz.com/product_result/?key=", },
+        { name: "多抓鱼", color: "#497849", searchUrl: "https://www.duozhuayu.com/search/book/", },
+      ].forEach(({ name, color, searchUrl }) =>
+        $(".search_input_text").parent().append(
+          $('<button>').text("搜 " + name)
+            .css({ backgroundColor: color, color: "#fff", borderRadius: "1em", margin: ".5em", padding: ".5em", cursor: "pointer", })
+            .click(() => {
+              GM_openInTab(searchUrl + $(".search_input_text").val(), { active: true, setParent: true });
+            })
+        )
       );
+
       // 建议元素下移，避免遮挡按钮
       $(".search_suggest_keyword_container").css("margin-top", "2.3em");
     }
   };
   const mutationObserver = new MutationObserver(handleListenChange);
-  const element = document.body;
-  const options = {
-    attributes: true,
-    attributeFilter: ["class"],
-  };
-  mutationObserver.observe(element, options);
+  mutationObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
-  function get_searchBox() {
-    return $(".search_input_text")[0];
-  }
-
-  function create_btn(searchUrl, name, color = "#fff") {
-    const btn = document.createElement("button");
-    btn.innerHTML = "搜 " + name;
-    btn.onclick = function () {
-      const searchText = get_searchBox().value;
-      GM_openInTab(searchUrl + searchText, { active: true, setParent: true });
-    };
-    add_btn_style();
-    return btn;
-
-    function add_btn_style() {
-      $(btn).css({
-        backgroundColor: color,
-        color: "#fff",
-        borderRadius: "1em",
-        margin: ".5em",
-        padding: ".5em",
-      });
-    }
-  }
-
-  function add_btn(btn) {
-    const searchBox = get_searchBox();
-    searchBox.parentElement.insertBefore(btn, searchBox.nextSibling);
-  }
-  // 添加按钮们
-  function add_multi_btn(add_btn, create_btn, ...info_list) {
-    info_list.reverse().forEach((info) => {
-      add_btn(create_btn(...info));
-    });
-  }
+  const get_searchBox = () => $(".search_input_text")[0];
 
   // 菜单更新的逻辑
   const default_menu_all = {
@@ -193,7 +134,7 @@
           );
           break;
       }
-    }
+    };
     GM_setValue("menu_id", menu_id);
   }
   update_menu();
@@ -204,9 +145,7 @@
     const handleListenChange = (mutationsList) => {
       const className = mutationsList[0].target.className;
       if (/reader_toolbar_container/.test(className)) {
-        $(".underlineBg").remove();
-        $(".underlineHandWrite").remove();
-        $(".query").remove();
+        $(".underlineBg, .underlineHandWrite, .query").remove();
         // 如果找到了有删除划线的按钮，就隐藏有直线划线的按钮，否则显示（因为之前隐藏了）
         $(".removeUnderline").length
           ? $(".underlineStraight").hide()
@@ -214,12 +153,7 @@
       }
     };
     const mutationObserver = new MutationObserver(handleListenChange);
-    const element = document.body;
-    const options = {
-      attributes: true,
-      subtree: true,
-    };
-    mutationObserver.observe(element, options);
+    mutationObserver.observe(document.body, { attributes: true, subtree: true });
   }
 
   // 功能5️⃣：加入翻页的仪式感
@@ -234,26 +168,17 @@
   odd_page_sound.controls = true;
   even_page_sound.controls = true;
   function playTurningSound() {
-    if (odd_page == true) {
-      odd_page_sound.play();
-    } else {
-      even_page_sound.play();
-    }
+    (odd_page ? odd_page_sound : even_page_sound).play();
     odd_page = !odd_page;
   }
   const daily_chapter_count = GM_getValue("daily_chapter_count", {});
   const add_one_chapter_count = () => {
-    if (menu_all.play_turning_sound) {
-      playTurningSound();
-    }
+    menu_all.play_turning_sound && playTurningSound();
     const now = new Date();
-    const today =
-      now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate();
-    if (today in daily_chapter_count) {
-      daily_chapter_count[today] += 1;
-    } else {
-      daily_chapter_count[today] = 0;
-    }
+    const today = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+    today in daily_chapter_count
+      ? (daily_chapter_count[today] += 1)
+      : (daily_chapter_count[today] = 0);
     GM_setValue("daily_chapter_count", daily_chapter_count);
     console.log(daily_chapter_count[today]);
   };
@@ -261,81 +186,43 @@
     // 监听页面是否到页底，会多次到达页底，但只会添加一个监听
     const handleListenChange = (mutationsList) => {
       const className = mutationsList[0].target.className;
-      if (/readerBottomBar/.test(className)) {
-        const nextPageBtn = document.getElementsByClassName(
-          "readerFooter_button"
-        )[0];
-        // 使用相同外部函数，监听之前先去除，是防止重复添加的一种方法
-        try {
-          nextPageBtn.removeEventListener("click", add_one_chapter_count);
-        } catch (e) { }
-        try {
-          nextPageBtn.addEventListener("click", add_one_chapter_count);
-        } catch (e) { }
-      }
+      // 使用相同外部函数，监听之前先去除，是防止重复添加的一种方法
+      // 但jQuery有one方法，可以只添加一次监听
+      /readerBottomBar/.test(className)
+        && $(".readerFooter_button").one("click", add_one_chapter_count);
     };
     const mutationObserver = new MutationObserver(handleListenChange);
-    const element = document.body;
-    const options = {
-      attributes: true,
-      subtree: true,
-    };
-    mutationObserver.observe(element, options);
+    mutationObserver.observe(document.body, { attributes: true, subtree: true });
   }
 
   // 功能6️⃣：首页及书架页面简化
-  if (menu_all.simplify_main_page) {
-    $(document).ready(removeAds);
-  }
-  function removeAds() {
-    const $login = $(".navBar_link_Login");
-    $login.detach();
-    const ads = [
-      ".shelf_header",
-      ".navBar_link_ink",
-      ".navBar_link_Phone",
-      ".ranking_topCategory_container",
-      ".recommend_preview_container",
-      ".app_footer_copyright",
-    ];
-    for (const ad of ads) {
-      $(ad).remove();
-    }
+  menu_all.simplify_main_page && $(() => {
+    const $login = $(".navBar_link_Login").detach();
+    $(
+      ".shelf_header, .navBar_link_ink, .navBar_link_Phone, .ranking_topCategory_container, .recommend_preview_container, .app_footer_copyright"
+    ).remove();
     // 书架页面上多余的separator
-    const separators = document.querySelectorAll(".navBar_separator");
-    for (let i = 1; i < 4; ++i) {
-      $(separators[i]).remove();
-    }
-    $login.appendTo(".navBar_inner");
+    $(".navBar_separator").slice(1, 4).remove();
+    $(".navBar_inner").append($login);
     // 阅读界面的听书和手机阅读的按钮
-    $(".lecture").hide();
-    $(".download").hide();
-    $(".readerTopBar").stop().css({
-      maxWidth: "1000px",
-      opacity: "0.6",
-    });
+    $(".lecture, .download").hide();
+    $(".readerTopBar").stop().css({ maxWidth: "1000px", opacity: "0.6" });
     $(".readerControls").stop().css("opacity", "0.8");
-  }
+    // 解决有时用户头像无法正常工作的问题
+    setTimeout(() => $(".wr_avatar_img").attr("src").includes("wx.qlogo.cn") || location.reload(), 500);
+  })
 
   // 功能7️⃣：Ctrl/Command + Enter，提交笔记（不用点提交按钮）
   {
     // 监听页面是否是想法页面
     const handleListenChange = (mutationsList) => {
       const className = mutationsList[1].target.className;
-      if (/readerWriteReviewPanel/.test(className)) {
-        $('#WriteBookReview').keydown((e) => {
-          if ((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey)) {
-            $('.writeReview_submit_button').click();
-          }
-        })
-      }
+      /readerWriteReviewPanel/.test(className) && $("#WriteBookReview").keydown((e) => {
+        const isCtrlEnter = (e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey);
+        isCtrlEnter && $(".writeReview_submit_button").click();
+      });
     };
     const mutationObserver = new MutationObserver(handleListenChange);
-    const element = document.body;
-    const options = {
-      attributes: true,
-      subtree: true,
-    };
-    mutationObserver.observe(element, options);
+    mutationObserver.observe(document.body, { attributes: true, subtree: true });
   }
 })();
