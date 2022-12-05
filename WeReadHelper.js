@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.9.1
+// @version      5.9.2
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -207,6 +207,10 @@
         $(".underlineBg").remove();
         $(".underlineHandWrite").remove();
         $(".query").remove();
+        // 如果找到了有删除划线的按钮，就隐藏有直线划线的按钮，否则显示（因为之前隐藏了）
+        $(".removeUnderline").length
+          ? $(".underlineStraight").hide()
+          : $(".underlineStraight").show();
       }
     };
     const mutationObserver = new MutationObserver(handleListenChange);
