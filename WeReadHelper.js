@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.10.0
+// @version      5.10.1
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -20,6 +20,7 @@
   // 功能1️⃣：宽屏
   $(function () {
     $(".app_content").css("maxWidth", 1000);
+    $(".readerTopBar").css("display", "flex");
   });
 
   // 功能2️⃣：自动隐藏顶栏和侧边栏，上划显示，下滑隐藏
