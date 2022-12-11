@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.10.2
+// @version      5.10.3
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -140,13 +140,16 @@
   }
   update_menu();
 
-  // 功能4️⃣：隐藏荧光和波浪划线样式和搜索（默认不开启
+  // 功能4️⃣：简化划线菜单，包括想法页面
   if (menu_all.simplify_underline) {
     // 监听页面是否弹出工具框
     const handleListenChange = (mutationsList) => {
       const className = mutationsList[0].target.className;
       if (/reader_toolbar_container/.test(className)) {
         $(".underlineBg, .underlineHandWrite, .query").remove();
+        // 在这里完成简化想法页面的功能
+        $("#readerReviewDetailPanel").css("padding-top", "12px");
+        $("#readerReviewDetailPanel .title").remove();
         // 如果找到了有删除划线的按钮，就隐藏有直线划线的按钮，否则显示（因为之前隐藏了）
         $(".removeUnderline").length
           ? $(".underlineStraight").hide()
