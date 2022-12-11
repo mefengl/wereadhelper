@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.10.1
+// @version      5.10.2
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -74,9 +74,9 @@
 
   // 菜单更新的逻辑
   const default_menu_all = {
-    simplify_underline: false,
+    simplify_underline: true,
     play_turning_sound: false,
-    simplify_main_page: false,
+    simplify_main_page: true,
   };
   const menu_all = GM_getValue("menu_all", default_menu_all);
   // 检查是否有新增菜单
