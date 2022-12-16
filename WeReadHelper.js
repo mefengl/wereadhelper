@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.12.2
+// @version      5.12.3
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -141,7 +141,7 @@
         case "new_book_shelf":
           // 添加新的
           menu_id[name] = GM_registerMenuCommand(
-            " 新书架外观：" + (value ? "✅" : "❌"),
+            " 新书架外观🚧：" + (value ? "✅" : "❌"),
             () => {
               menu_all[name] = !menu_all[name];
               GM_setValue("menu_all", menu_all);
