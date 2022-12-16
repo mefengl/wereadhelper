@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.12.1
+// @version      5.12.2
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -258,6 +258,7 @@
     $(".shelfBook .title").css("margin", "0");
     $(".shelfBook_add_cover").height(70).width(128);
     $(".wr_bookCover, .shelfBook_placeholder").remove();
+    $(".navBar_logo, .navBar_avatar").css('opacity', '0.54');
     // 随机书籍，魔法！呱呱
     $(".shelfBook_add").clone()
       .removeClass("shelfBook_add").addClass("shelfBook")
