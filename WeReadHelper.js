@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.11.0
+// @version      5.11.1
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -248,8 +248,8 @@
   // 功能8️⃣：新的书架页面
   menu_all.new_book_shelf && $(() => {
     $(".shelfBook").height(70).width(128).css({
-      "background-color": "rgba(0,0,0,.3)", "border-radius": ".2em", "margin": ".5em",
-      "display": "grid", "place-items": "center", "box-shadow": "0 0 1em rgba(0,0,0,.3)"
+      "background-color": "rgba(0,0,0,.1)", "border-radius": ".2em", "margin": ".8em",
+      "display": "grid", "place-items": "center", "box-shadow": "0 0 .5em rgba(0,0,0,.3)"
     });
     $(".shelfBook .title").css("margin", "0");
     $(".shelfBook_add_cover").height(70).width(128);
