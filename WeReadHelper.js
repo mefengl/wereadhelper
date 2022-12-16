@@ -19,6 +19,16 @@
 
   // 功能1️⃣：宽屏
   $(function () {
+    // ZZTODO: make bookshelf looks like in main page's book effect
+    // $(".shelf_list").css("align-items", "center");
+    // $(".shelfBook").height(64).width(128).css({
+    //   "background-color": "rgba(0,0,0,.3)", "border-radius": ".2em", "margin": ".5em",
+    //   "display": "grid", "place-items": "center", "box-shadow": "0 0 1em rgba(0,0,0,.3)"
+    // });
+    // $(".shelfBook .title").css("margin", "0");
+    // $(".shelfBook_add_cover").height(64).width(128);
+    // $(".wr_bookCover").remove();
+
     $(".app_content").css("maxWidth", 1000);
     $(".readerTopBar").css("display", "flex");
   });
