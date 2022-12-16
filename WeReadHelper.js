@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.12.0
+// @version      5.12.1
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -269,5 +269,7 @@
         </div>
       `)
       .insertBefore($(".shelfBook_add"));
+    // 如果 .wr_bookCover 依然存在的话，就刷新页面，重试
+    setTimeout(() => $(".wr_bookCover").length && location.reload(), 500);
   });
 })();
