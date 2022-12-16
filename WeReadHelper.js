@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.12.3
+// @version      5.12.4
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -249,17 +249,18 @@
   }
 
   // 功能8️⃣：新的书架页面
-  // 🏗️ 分组样式暂未更改，后期会与书籍部分分开，放在下面，也许需要添加一个回到书架的按钮
+  // 🏗️ 分组内样式暂未更改，也许需要添加一个回到书架的按钮
   menu_all.new_book_shelf && $(() => {
     if (location.pathname.includes("reader")) return;
-    $(".shelfBook").height(70).width(128).css({
+    $(".shelfBook, .shelfArchive").height(70).width(128).css({
       "background-color": "rgba(0,0,0,.1)", "border-radius": ".2em", "margin": ".8em",
       "display": "grid", "place-items": "center", "box-shadow": "0 0 .5em rgba(0,0,0,.3)"
     });
-    $(".shelfBook .title").css("margin", "0");
+    $(".shelfBook .title, .shelfArchive .title").css("margin", "0");
     $(".shelfBook_add_cover").height(70).width(128);
-    $(".wr_bookCover, .shelfBook_placeholder").remove();
+    $(".wr_bookCover, .cover, .shelfBook_placeholder").remove();
     $(".navBar_logo, .navBar_avatar").css('opacity', '0.54');
+    $(".shelfArchive .title").css("color", "#5579ac")
     // 随机书籍，魔法！呱呱
     $(".shelfBook_add").clone()
       .removeClass("shelfBook_add").addClass("shelfBook")
