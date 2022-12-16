@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.10.3
+// @version      5.11.0
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -19,16 +19,6 @@
 
   // 功能1️⃣：宽屏
   $(function () {
-    // ZZTODO: make bookshelf looks like in main page's book effect
-    // $(".shelf_list").css("align-items", "center");
-    // $(".shelfBook").height(64).width(128).css({
-    //   "background-color": "rgba(0,0,0,.3)", "border-radius": ".2em", "margin": ".5em",
-    //   "display": "grid", "place-items": "center", "box-shadow": "0 0 1em rgba(0,0,0,.3)"
-    // });
-    // $(".shelfBook .title").css("margin", "0");
-    // $(".shelfBook_add_cover").height(64).width(128);
-    // $(".wr_bookCover").remove();
-
     $(".app_content").css("maxWidth", 1000);
     $(".readerTopBar").css("display", "flex");
   });
@@ -87,6 +77,7 @@
     simplify_underline: true,
     play_turning_sound: false,
     simplify_main_page: true,
+    new_book_shelf: false,
   };
   const menu_all = GM_getValue("menu_all", default_menu_all);
   // 检查是否有新增菜单
@@ -134,6 +125,20 @@
           // 添加新的
           menu_id[name] = GM_registerMenuCommand(
             " 简化首页：" + (value ? "✅" : "❌"),
+            () => {
+              menu_all[name] = !menu_all[name];
+              GM_setValue("menu_all", menu_all);
+              // 调用时触发，刷新菜单
+              update_menu();
+              // 该设置需刷新生效
+              location.reload();
+            }
+          );
+          break;
+        case "new_book_shelf":
+          // 添加新的
+          menu_id[name] = GM_registerMenuCommand(
+            " 新书架外观：" + (value ? "✅" : "❌"),
             () => {
               menu_all[name] = !menu_all[name];
               GM_setValue("menu_all", menu_all);
@@ -239,4 +244,15 @@
     const mutationObserver = new MutationObserver(handleListenChange);
     mutationObserver.observe(document.body, { attributes: true, subtree: true });
   }
+
+  // 功能8️⃣：新的书架页面
+  menu_all.new_book_shelf && $(() => {
+    $(".shelfBook").height(70).width(128).css({
+      "background-color": "rgba(0,0,0,.3)", "border-radius": ".2em", "margin": ".5em",
+      "display": "grid", "place-items": "center", "box-shadow": "0 0 1em rgba(0,0,0,.3)"
+    });
+    $(".shelfBook .title").css("margin", "0");
+    $(".shelfBook_add_cover").height(70).width(128);
+    $(".wr_bookCover").remove();
+  });
 })();
