@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.12.4
+// @version      5.12.5
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -250,7 +250,11 @@
 
   // 功能8️⃣：新的书架页面
   // 🏗️ 分组内样式暂未更改，也许需要添加一个回到书架的按钮
-  menu_all.new_book_shelf && $(() => {
+  if (menu_all.new_book_shelf) {
+    $(new_book_shelf); // load
+    window.onpopstate = new_book_shelf; // back
+  }
+  function new_book_shelf() {
     if (location.pathname.includes("reader")) return;
     $(".shelfBook, .shelfArchive").height(70).width(128).css({
       "background-color": "rgba(0,0,0,.1)", "border-radius": ".2em", "margin": ".8em",
@@ -260,19 +264,19 @@
     $(".shelfBook_add_cover").height(70).width(128);
     $(".wr_bookCover, .cover, .shelfBook_placeholder").remove();
     $(".navBar_logo, .navBar_avatar").css('opacity', '0.54');
-    $(".shelfArchive .title").css("color", "#5579ac")
+    $(".shelfArchive .title").css("color", "#5579ac");
     // 随机书籍，魔法！呱呱
+    $(".randomBook").remove();
     $(".shelfBook_add").clone()
-      .removeClass("shelfBook_add").addClass("shelfBook")
+      .removeClass("shelfBook_add").addClass("randomBook")
       .attr("href", $(".shelfBook").map((_, e) => e.href).toArray().sort(() => Math.random() - 0.5)[0])
       .html(`
         <div>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" clip-rule="evenodd" d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12ZM14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="currentColor" /> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C17.5915 3 22.2898 6.82432 23.6219 12C22.2898 17.1757 17.5915 21 12 21C6.40848 21 1.71018 17.1757 0.378052 12C1.71018 6.82432 6.40848 3 12 3ZM12 19C7.52443 19 3.73132 16.0581 2.45723 12C3.73132 7.94186 7.52443 5 12 5C16.4756 5 20.2687 7.94186 21.5428 12C20.2687 16.0581 16.4756 19 12 19Z" fill="currentColor" /> </svg> 
           <div>漫步</div>
         </div>
-      `)
-      .insertBefore($(".shelfBook_add"));
+      `).insertBefore($(".shelfBook_add"));
     // 如果 .wr_bookCover 依然存在的话，就刷新页面，重试
     setTimeout(() => $(".wr_bookCover").length && location.reload(), 500);
-  });
+  }
 })();
