@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.12.6
+// @version      5.12.7
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -249,11 +249,9 @@
   }
 
   // 功能8️⃣：新的书架页面
-  // 🏗️ 分组内样式暂未更改，也许需要添加一个回到书架的按钮
   if (menu_all.new_book_shelf) {
     $(new_book_shelf); // load
     window.onpopstate = new_book_shelf; // back
-    setInterval(new_book_shelf, 100); // else
   }
   function new_book_shelf() {
     if (location.pathname.includes("reader")) return;
@@ -266,7 +264,9 @@
     $(".shelfBook_add_cover").height(70).width(128);
     $(".wr_bookCover, .cover, .shelfBook_placeholder").remove();
     $(".navBar_logo, .navBar_avatar").css('opacity', '0.54');
+    // 处理分组
     $(".shelfArchive .title").css("color", "#5579ac");
+    $(".shelfArchive").click(new_book_shelf);
     // 随机书籍，魔法！呱呱
     $(".randomBook").remove();
     $(".shelfBook_add").clone()
