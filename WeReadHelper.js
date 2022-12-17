@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.12.5
+// @version      5.12.6
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -253,9 +253,11 @@
   if (menu_all.new_book_shelf) {
     $(new_book_shelf); // load
     window.onpopstate = new_book_shelf; // back
+    setInterval(new_book_shelf, 100); // else
   }
   function new_book_shelf() {
     if (location.pathname.includes("reader")) return;
+    if (!$(".wr_bookCover").length) return;
     $(".shelfBook, .shelfArchive").height(70).width(128).css({
       "background-color": "rgba(0,0,0,.1)", "border-radius": ".2em", "margin": ".8em",
       "display": "grid", "place-items": "center", "box-shadow": "0 0 .5em rgba(0,0,0,.3)"
