@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.13.0
+// @version      5.13.1
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -278,8 +278,8 @@
           <div>漫步</div>
         </div>
       `)
-      // 放到书架第一个
-      .insertBefore($(".shelfBook").eq(0));
+      // 放到书和分组的前面
+      .insertBefore($(".shelfBook, .shelfArchive").first());
     // 如果 .wr_bookCover 依然存在的话，就刷新页面，重试
     setTimeout(() => $(".wr_bookCover").length && location.reload(), 500);
   }
