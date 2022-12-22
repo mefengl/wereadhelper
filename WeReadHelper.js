@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.13.2
+// @version      5.13.3
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -219,6 +219,7 @@
 
   // 功能6️⃣：首页及书架页面简化
   menu_all.simplify_main_page && $(() => {
+    if (location.pathname.includes("bookDetail")) return;
     $(
       ".shelf_header, .navBar_link_ink, .navBar_link_Phone, .ranking_topCategory_container, .recommend_preview_container, .app_footer_copyright"
     ).remove();
