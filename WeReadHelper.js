@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.13.1
+// @version      5.13.2
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -219,13 +219,11 @@
 
   // 功能6️⃣：首页及书架页面简化
   menu_all.simplify_main_page && $(() => {
-    const $login = $(".navBar_link_Login").detach();
     $(
       ".shelf_header, .navBar_link_ink, .navBar_link_Phone, .ranking_topCategory_container, .recommend_preview_container, .app_footer_copyright"
     ).remove();
     // 书架页面上多余的separator
     $(".navBar_separator").slice(1, 4).remove();
-    $(".navBar_inner").append($login);
     // 阅读界面的听书和手机阅读的按钮
     $(".lecture, .download").hide();
     $(".readerTopBar").stop().css({ maxWidth: "1000px", opacity: "0.6" });
