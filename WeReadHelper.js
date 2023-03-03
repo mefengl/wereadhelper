@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手(with ChatGPT)
 // @namespace   https://github.com/mefengl
-// @version      6.0.2
+// @version      6.0.3
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -263,6 +263,7 @@
     "如果用现实生活中的例子来说，就是：",
     "类似的观点还有：",
     "相反的观点有：",
+    "不同生活环境，不同职业的人会有不同的视角，比如：",
     "写成一首诗是：",
     "想要深入了解，可以看以下的文章、书籍：",
   ]
