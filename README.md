@@ -1,4 +1,4 @@
-# 📘 微信读书阅读助手
+# 📘 微信读书阅读助手(with ChatGPT)
 
 <a href="https://weibo.com/u/7752747770"> <img src="https://img.shields.io/badge/Weibo-微博-orange"/> </a>
 <a href="https://github.com/mefengl/wereadhelper"> <img src="https://img.shields.io/github/stars/mefengl/wereadhelper?style=social"/> </a>
