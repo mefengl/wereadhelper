@@ -1,16 +1,18 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      5.14.1
+// @version      6.0.0
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
+// @match        https://chat.openai.com/chat
 // @require      https://cdn.staticfile.org/jquery/3.6.1/jquery.min.js
 // @grant        GM_openInTab
 // @grant        GM_registerMenuCommand
 // @grant        GM_unregisterMenuCommand
 // @grant        GM_getValue
 // @grant        GM_setValue
+// @grant        GM_addValueChangeListener
 // @license MIT
 // ==/UserScript==
 
@@ -81,9 +83,18 @@
     play_turning_sound: false,
     simplify_main_page: true,
   };
+  
+  // 只对使用 chatgpt 的读书人开启复制自动询问
+  $(()=>location.href.includes("chat.openai") && GM_setValue("openai", true) && console.log("开启复制自动询问"));
+  if (GM_getValue("openai") == true) {
+    console.log("开启菜单");
+    default_menu_all.auto_ask_chatgpt = false;
+  }
+  
   const menu_all = GM_getValue("menu_all", default_menu_all);
   // 检查是否有新增菜单
   for (let name in default_menu_all) {
+    console.log(name);
     if (!(name in menu_all)) {
       menu_all[name] = default_menu_all[name];
     }
@@ -134,6 +145,18 @@
               update_menu();
               // 该设置需刷新生效
               location.reload();
+            }
+          );
+          break;
+        case "auto_ask_chatgpt":
+          // 添加新的
+          menu_id[name] = GM_registerMenuCommand(
+            " 自动询问：" + (value ? "✅" : "❌"),
+            () => {
+              menu_all[name] = !menu_all[name];
+              GM_setValue("menu_all", menu_all);
+              // 调用时触发，刷新菜单
+              update_menu();
             }
           );
           break;
@@ -233,4 +256,94 @@
     const mutationObserver = new MutationObserver(handleListenChange);
     mutationObserver.observe(document.body, { attributes: true, subtree: true });
   }
+
+  // 功能8️⃣：自动询问 ChatGPT
+  const prompts = [
+    "如果用现实生活中的例子来说，就是：",
+    "类似的观点还有：",
+    "相反的观点有：",
+    "想要深入了解，可以看以下的文章、书籍：",
+  ]
+  menu_all.auto_ask_chatgpt && $(() => {
+    // 监听页面是否弹出工具框
+    const handleListenChange = (mutationsList) => {
+      const className = mutationsList[0].target.className;
+      if (/reader_toolbar_container/.test(className)) {
+        $(".toolbarItem.copy").one("click", () => {
+          setTimeout(async () => {
+            // 现在复制的段落已经在系统剪贴板中了，提取到变量中
+            const copied_text = await navigator.clipboard.readText();
+            const prompt_texts = prompts.map(p => `${copied_text}\n${p}`);
+            console.log(prompt_texts);
+            // 保存到本地
+            GM_setValue("prompt_texts", prompt_texts);
+          }, 100);
+        });
+      }
+    };
+    const mutationObserver = new MutationObserver(handleListenChange);
+    mutationObserver.observe(document.body, { attributes: true, subtree: true });
+  });
+  // ChatGPT 页面响应prompt_texts
+  const get_submit_button = () => {
+    const form = document.querySelector('form');
+    const buttons = form.querySelectorAll('button');
+    const result = buttons[buttons.length - 1]; // by textContent maybe better
+    return result;
+  };
+  const get_textarea = () => {
+    const form = document.querySelector('form');
+    const textareas = form.querySelectorAll('textarea');
+    const result = textareas[0];
+    return result;
+  };
+  const get_regenerate_button = () => {
+    const form = document.querySelector('form');
+    const buttons = form.querySelectorAll('button');
+    for (let i = 0; i < buttons.length; i++) {
+      const buttonText = buttons[i].textContent.trim().toLowerCase();
+      if (buttonText.includes('regenerate')) {
+        return buttons[i];
+      }
+    }
+  };
+
+  let last_trigger_time = +new Date();
+  $(() => {
+    if (location.href.includes("chat.openai")) {
+      console.log("ChatGPT");
+      GM_addValueChangeListener("prompt_texts", (name, old_value, new_value) => {
+        if (+new Date() - last_trigger_time < 500) {
+          return;
+        }
+        last_trigger_time = new Date();
+        setTimeout(async () => {
+          console.log("ChatGPT页面响应prompt_texts");
+          const prompt_texts = new_value;
+          console.log(prompt_texts);
+          if (prompt_texts.length > 0) {
+            console.log("进入处理");
+            // 从本地取出 prompt_texts
+            let firstTime = true;
+            while (prompt_texts.length > 0) {
+              if (!firstTime) {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+              }
+              if (!firstTime && get_regenerate_button() == undefined) {
+                continue;
+              }
+              firstTime = false;
+              const prompt_text = prompt_texts.shift();
+              console.log(prompt_text);
+              // 填入 prompt_text
+              get_textarea().value = prompt_text;
+              // 提交
+              get_submit_button().click();
+            }
+          }
+        }, 0);
+        GM_setValue("prompt_texts", []);
+      });
+    }
+  });
 })();
