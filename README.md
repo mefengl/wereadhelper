@@ -43,6 +43,8 @@
 
 > 😊 真的很欢迎开发者来帮忙完善这个功能，可以在 issue 里提出想法什么的
 
+> 🤗 https://www.bilibili.com/video/BV1a8411F7n2
+
 ## 小功能 🦴
 
 > 不用点提交按钮，`Ctrl + Enter` 也可以提交想法了
