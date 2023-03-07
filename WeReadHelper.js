@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.0.9
+// @version      6.0.10
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -259,15 +259,15 @@
 
   // 功能8️⃣：自动询问 ChatGPT
   const prompts = [
-    "可以用表格的方式总结观点：",
-    "如果用现实生活中的例子来说，就是：",
-    "类似的观点还有：",
-    "相反的观点有：",
-    "不同生活环境，不同职业的人会有不同的视角，比如：",
-    "相关历史是：",
-    "不同的国家对这个的看法会是：",
-    "如果莎士比亚将它写成中文诗会是：",
-    "想要深入了解，可以看以下的文章、书籍：",
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}，可以用表格的方式总结观点：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}，如果用现实生活中的例子来说，就是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}，类似的句子还有：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}，相反的观点有：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}，不同生活环境，不同职业的人会有不同的视角，比如：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}，这句话相关历史和背景是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}，不同的国家对这句的看法会是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}，如果莎士比亚将它写成中文诗会是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}，想要深入了解这句话，推荐以下的文章、书籍：`,
   ]
   menu_all.auto_ask_chatgpt && $(() => {
     // 监听页面是否弹出工具框
@@ -278,7 +278,8 @@
           setTimeout(async () => {
             // 现在复制的段落已经在系统剪贴板中了，提取到变量中
             const copied_text = await navigator.clipboard.readText();
-            const prompt_texts = prompts.map(p => `${copied_text}\n${p}`);
+            const book_title = $(".readerTopBar_title_link").text();
+            const prompt_texts = prompts.map(p => p(book_title, copied_text));
             console.log(prompt_texts);
             // 保存到本地
             GM_setValue("prompt_texts", prompt_texts);
