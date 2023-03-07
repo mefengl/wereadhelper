@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         📘微信读书阅读助手(with ChatGPT)
+// @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
 // @version      6.0.9
 // @description  读书人用的脚本
@@ -321,7 +321,8 @@
         if (+new Date() - last_trigger_time < 500) {
           return;
         }
-        last_trigger_time = new Date();
+        last_trigger_time = +new Date();
+        GM_setValue("prompt_texts", []);
         setTimeout(async () => {
           console.log("ChatGPT页面响应prompt_texts");
           const prompt_texts = new_value;
@@ -347,7 +348,6 @@
             }
           }
         }, 0);
-        GM_setValue("prompt_texts", []);
       });
     }
   });

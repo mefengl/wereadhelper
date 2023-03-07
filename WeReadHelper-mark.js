@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         📘微信读书阅读助手(with ChatGPT)-马克笔款
+// @name         📘微信读书阅读助手-马克笔款
 // @namespace    https://github.com/mefengl
 // @version      6.0.9
 // @description  读书人用的脚本
