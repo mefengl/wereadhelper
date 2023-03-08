@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手-马克笔款
-// @namespace    https://github.com/mefengl
-// @version      6.0.10
+// @namespace   https://github.com/mefengl
+// @version      6.0.11
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -282,6 +282,7 @@
             const prompt_texts = prompts.map(p => p(book_title, copied_text));
             console.log(prompt_texts);
             // 保存到本地
+            GM_setValue("prompt_texts", []);
             GM_setValue("prompt_texts", prompt_texts);
           }, 100);
         });
@@ -319,6 +320,9 @@
     if (location.href.includes("chat.openai")) {
       console.log("ChatGPT");
       GM_addValueChangeListener("prompt_texts", (name, old_value, new_value) => {
+        if (new_value.length == 0) {
+          return;
+        }
         if (+new Date() - last_trigger_time < 500) {
           return;
         }

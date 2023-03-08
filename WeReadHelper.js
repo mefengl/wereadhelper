@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.0.10
+// @version      6.0.11
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -83,14 +83,14 @@
     play_turning_sound: false,
     simplify_main_page: true,
   };
-  
+
   // 只对使用 chatgpt 的读书人开启复制自动询问
-  $(()=>location.href.includes("chat.openai") && GM_setValue("openai", true) && console.log("开启复制自动询问"));
+  $(() => location.href.includes("chat.openai") && GM_setValue("openai", true) && console.log("开启复制自动询问"));
   if (GM_getValue("openai") == true) {
     console.log("开启菜单");
     default_menu_all.auto_ask_chatgpt = false;
   }
-  
+
   const menu_all = GM_getValue("menu_all", default_menu_all);
   // 检查是否有新增菜单
   for (let name in default_menu_all) {
@@ -282,6 +282,7 @@
             const prompt_texts = prompts.map(p => p(book_title, copied_text));
             console.log(prompt_texts);
             // 保存到本地
+            GM_setValue("prompt_texts", []);
             GM_setValue("prompt_texts", prompt_texts);
           }, 100);
         });
@@ -319,6 +320,9 @@
     if (location.href.includes("chat.openai")) {
       console.log("ChatGPT");
       GM_addValueChangeListener("prompt_texts", (name, old_value, new_value) => {
+        if (new_value.length == 0) {
+          return;
+        }
         if (+new Date() - last_trigger_time < 500) {
           return;
         }
