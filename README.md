@@ -35,6 +35,10 @@
 
 > 🎵 翻页的声音，也许很美
 
+## 功能 5️⃣：with ChatGPT
+
+> 🏗️ 开发中，抢先体验见 https://www.bilibili.com/video/BV1a8411F7n2
+
 ## 小功能 🦴
 
 > 不用点提交按钮，`Ctrl + Enter` 也可以提交想法了
