@@ -39,6 +39,8 @@
 
 > 🏗️ 开发中，抢先体验见 https://www.bilibili.com/video/BV1a8411F7n2
 
+> 🙃 如果这个合你口味，同样推荐 [Doozy](https://greasyfork.org/zh-CN/scripts/461179)
+
 ## 小功能 🦴
 
 > 不用点提交按钮，`Ctrl + Enter` 也可以提交想法了
