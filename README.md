@@ -1,11 +1,12 @@
 # 📘 微信读书阅读助手
 
-<a href="https://weibo.com/u/7752747770"> <img src="https://img.shields.io/badge/Weibo-微博-orange"/> </a>
 <a href="https://github.com/mefengl/wereadhelper"> <img src="https://img.shields.io/github/stars/mefengl/wereadhelper?style=social"/> </a>
-<a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/greasyfork/l/420774?color=&label=License"/> </a>
+[![Follow @mefengl on GitHub](https://img.shields.io/github/followers/mefengl?label=Follow%20%40mefengl&style=social "GitHub")](https://github.com/mefengl)
 
 <a href="https://greasyfork.org/zh-CN/scripts/420774/stats"> <img src="https://img.shields.io/greasyfork/dd/420774"/> </a>
 <a href="https://greasyfork.org/zh-CN/scripts/420774/stats"> <img src="https://img.shields.io/greasyfork/dt/420774"/> </a>
+
+<a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/greasyfork/l/420774?color=&label=License"/> </a>
 
 读书人用的脚本
 
