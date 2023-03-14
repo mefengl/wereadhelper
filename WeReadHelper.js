@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.0.13
+// @version      6.1.1
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -276,7 +276,10 @@
     const handleListenChange = (mutationsList) => {
       const className = mutationsList[0].target.className;
       if (/reader_toolbar_container/.test(className)) {
+        let click_id = undefined;
+        $(".toolbarItem").one("click", () => click_id = setTimeout(() => $(".toolbarItem.copy").trigger("click"), 100));
         $(".toolbarItem.copy").one("click", () => {
+          clearTimeout(click_id);
           setTimeout(async () => {
             // 现在复制的段落已经在系统剪贴板中了，提取到变量中
             const copied_text = await navigator.clipboard.readText();
@@ -288,6 +291,8 @@
             GM_setValue("prompt_texts", prompt_texts);
           }, 100);
         });
+        // 删除划线就不用触发ChatGPT了
+        $(".toolbarItem.removeUnderline").one("click", () => clearTimeout(click_id));
       }
     };
     const mutationObserver = new MutationObserver(handleListenChange);
