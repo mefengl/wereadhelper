@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.1.4
+// @version      6.1.5
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -323,6 +323,16 @@
       }
     }
   };
+  const get_stop_generating_button = () => {
+    const form = document.querySelector('form');
+    const buttons = form.querySelectorAll('button');
+    for (let i = 0; i < buttons.length; i++) {
+      const buttonText = buttons[i].textContent.trim().toLowerCase();
+      if (buttonText.includes('stop')) {
+        return buttons[i];
+      }
+    }
+  };
 
   let last_trigger_time = +new Date();
   $(() => {
@@ -349,7 +359,8 @@
               if (!firstTime) {
                 await new Promise(resolve => setTimeout(resolve, 2000));
               }
-              if (!firstTime && get_regenerate_button() == undefined) {
+              // if (!firstTime && get_regenerate_button() == undefined) {
+              if (!firstTime && get_stop_generating_button() !== undefined) {
                 continue;
               }
               firstTime = false;
