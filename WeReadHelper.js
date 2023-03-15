@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.1.2
+// @version      6.1.4
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
-// @match        https://chat.openai.com/chat
+// @match        https://chat.openai.com/*
 // @require      https://cdn.staticfile.org/jquery/3.6.1/jquery.min.js
 // @grant        GM_openInTab
 // @grant        GM_registerMenuCommand
