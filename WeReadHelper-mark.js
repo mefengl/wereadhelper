@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手-马克笔款
 // @namespace   https://github.com/mefengl
-// @version      6.1.1
+// @version      6.1.2
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -261,6 +261,8 @@
   const prompts = [
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n可以总结内容为：`,
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n可以用表格的方式总结观点：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n从第一性原理出发，可以得出：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n从奥卡姆剃刀原理来看，可以得出：`,
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如果用简单的现代汉语来说，就是：`,
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如果用现实生活中的例子来说，就是：`,
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n类似的句子还有：`,
