@@ -42,6 +42,8 @@
 
 > 🏗️ 开发中，抢先体验见 https://www.bilibili.com/video/BV1a8411F7n2
 
+> 🐙 可与[chat-octopus](https://greasyfork.org/zh-CN/scripts/462713-chat-octopus)配合使用
+
 > 🙃 如果这个合你口味，同样推荐 [Doozy](https://greasyfork.org/zh-CN/scripts/461179)
 
 ## 小功能 🦴

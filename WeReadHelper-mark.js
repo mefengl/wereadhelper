@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手-马克笔款
 // @namespace   https://github.com/mefengl
-// @version      6.1.6
+// @version      6.1.9
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -300,43 +300,68 @@
     mutationObserver.observe(document.body, { attributes: true, subtree: true });
   });
   // ChatGPT 页面响应prompt_texts
-  const get_submit_button = () => {
-    const form = document.querySelector('form');
-    const buttons = form.querySelectorAll('button');
-    const result = buttons[buttons.length - 1]; // by textContent maybe better
-    return result;
-  };
-  const get_textarea = () => {
-    const form = document.querySelector('form');
-    const textareas = form.querySelectorAll('textarea');
-    const result = textareas[0];
-    return result;
-  };
-  const get_regenerate_button = () => {
-    const form = document.querySelector('form');
-    const buttons = form.querySelectorAll('button');
-    for (let i = 0; i < buttons.length; i++) {
-      const buttonText = buttons[i].textContent.trim().toLowerCase();
-      if (buttonText.includes('regenerate')) {
-        return buttons[i];
+  const chatgpt = {
+    getSubmitButton: function () {
+      const form = document.querySelector('form');
+      if (!form) return;
+      const buttons = form.querySelectorAll('button');
+      const result = buttons[buttons.length - 1];
+      return result;
+    },
+    getTextarea: function () {
+      const form = document.querySelector('form');
+      if (!form) return;
+      const textareas = form.querySelectorAll('textarea');
+      const result = textareas[0];
+      return result;
+    },
+    getRegenerateButton: function () {
+      const form = document.querySelector('form');
+      if (!form) return;
+      const buttons = form.querySelectorAll('button');
+      for (let i = 0; i < buttons.length; i++) {
+        const buttonText = buttons[i]?.textContent?.trim().toLowerCase();
+        if (buttonText?.includes('regenerate')) {
+          return buttons[i];
+        }
       }
-    }
-  };
-  const get_stop_generating_button = () => {
-    const form = document.querySelector('form');
-    const buttons = form.querySelectorAll('button');
-    for (let i = 0; i < buttons.length; i++) {
-      const buttonText = buttons[i].textContent.trim().toLowerCase();
-      if (buttonText.includes('stop')) {
-        return buttons[i];
+    },
+    getStopGeneratingButton: function () {
+      const form = document.querySelector('form');
+      if (!form) return;
+      const buttons = form.querySelectorAll('button');
+      if (buttons.length === 0) return;
+      for (let i = 0; i < buttons.length; i++) {
+        const buttonText = buttons[i]?.textContent?.trim().toLowerCase();
+        if (buttonText?.includes('stop')) {
+          return buttons[i];
+        }
       }
-    }
+    },
+    send: function (text) {
+      const textarea = this.getTextarea();
+      if (!textarea) return;
+      textarea.value = text;
+      textarea.dispatchEvent(new Event('input', { bubbles: true }));
+      textarea.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    },
+    onSend: function (callback) {
+      const textarea = this.getTextarea();
+      if (!textarea) return;
+      textarea.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+          callback();
+        }
+      });
+      const sendButton = this.getSubmitButton();
+      if (!sendButton) return;
+      sendButton.addEventListener('mousedown', callback);
+    },
   };
 
   let last_trigger_time = +new Date();
   $(() => {
     if (location.href.includes("chat.openai")) {
-      console.log("ChatGPT");
       GM_addValueChangeListener("prompt_texts", (name, old_value, new_value) => {
         if (new_value.length == 0) {
           return;
@@ -347,28 +372,20 @@
         last_trigger_time = +new Date();
         GM_setValue("prompt_texts", []);
         setTimeout(async () => {
-          console.log("ChatGPT页面响应prompt_texts");
           const prompt_texts = new_value;
-          console.log(prompt_texts);
           if (prompt_texts.length > 0) {
-            console.log("进入处理");
             // 从本地取出 prompt_texts
             let firstTime = true;
             while (prompt_texts.length > 0) {
               if (!firstTime) {
                 await new Promise(resolve => setTimeout(resolve, 2000));
               }
-              // if (!firstTime && get_regenerate_button() == undefined) {
-              if (!firstTime && get_stop_generating_button() !== undefined) {
+              if (!firstTime && chatgpt.getStopGeneratingButton() !== undefined) {
                 continue;
               }
               firstTime = false;
               const prompt_text = prompt_texts.shift();
-              console.log(prompt_text);
-              // 填入 prompt_text
-              get_textarea().value = prompt_text;
-              // 提交
-              get_submit_button().click();
+              chatgpt.send(prompt_text);
             }
           }
         }, 0);
