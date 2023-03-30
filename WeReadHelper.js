@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.1.10
+// @version      6.1.11
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -244,7 +244,7 @@
       // 解决有时用户头像无法正常工作的问题
       setTimeout(() => $(".wr_avatar_img").attr("src").includes("wx.qlogo.cn") || location.reload(), 2500);
     })
-  }, 100);
+  }, 200);
 
   // 功能7️⃣：Ctrl/Command + Enter，提交笔记（不用点提交按钮）
   {
