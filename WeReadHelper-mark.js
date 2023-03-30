@@ -226,22 +226,25 @@
   }
 
   // 功能6️⃣：首页及书架页面简化
-  menu_all.simplify_main_page && $(() => {
-    if (location.pathname.includes("shelf")) {
-      $(
-        ".shelf_header, .navBar_link_ink, .navBar_link_Phone"
-      ).remove();
-      // 书架页面上多余的separator
-      $(".navBar_separator").slice(1, 4).remove();
-    }
-    $(".ranking_topCategory_container, .recommend_preview_container, .app_footer_copyright").remove();
-    // 阅读界面的听书和手机阅读的按钮
-    $(".lecture, .download").hide();
-    $(".readerTopBar").stop().css({ maxWidth: "1000px", opacity: "0.6" });
-    $(".readerControls").stop().css("opacity", "0.8");
-    // 解决有时用户头像无法正常工作的问题
-    setTimeout(() => $(".wr_avatar_img").attr("src").includes("wx.qlogo.cn") || location.reload(), 2500);
-  })
+  setTimeout(() => {
+
+    menu_all.simplify_main_page && $(() => {
+      if (location.pathname.includes("shelf")) {
+        $(
+          ".shelf_header, .navBar_link_ink, .navBar_link_Phone"
+        ).remove();
+        // 书架页面上多余的separator
+        $(".navBar_separator").slice(1, 4).remove();
+      }
+      $(".ranking_topCategory_container, .recommend_preview_container, .app_footer_copyright").remove();
+      // 阅读界面的听书和手机阅读的按钮
+      $(".lecture, .download").hide();
+      $(".readerTopBar").stop().css({ maxWidth: "1000px", opacity: "0.6" });
+      $(".readerControls").stop().css("opacity", "0.8");
+      // 解决有时用户头像无法正常工作的问题
+      setTimeout(() => $(".wr_avatar_img").attr("src").includes("wx.qlogo.cn") || location.reload(), 2500);
+    })
+  }, 100);
 
   // 功能7️⃣：Ctrl/Command + Enter，提交笔记（不用点提交按钮）
   {
