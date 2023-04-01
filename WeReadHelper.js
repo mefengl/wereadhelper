@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.1.11
+// @version      6.2.0
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -172,6 +172,9 @@
     const handleListenChange = (mutationsList) => {
       const className = mutationsList[0].target.className;
       if (/reader_toolbar_container/.test(className)) {
+        // 去除划线颜色选择框
+        $(".reader_toolbar_color_container").remove();
+        // 去除划线工具栏多余的按钮
         $(".underlineBg, .underlineHandWrite, .query").remove();
         // 在这里完成简化想法页面的功能
         $("#readerReviewDetailPanel").css("padding-top", "12px");
