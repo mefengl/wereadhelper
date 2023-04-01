@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.2.1
+// @version      6.2.2
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -267,12 +267,12 @@
   const prompts = [
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n可以总结内容为：`,
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如果用简单的现代汉语来说，就是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如果用现实生活中的例子来说，就是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n类似的句子还有：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n这句话相关历史和背景是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n莎士比亚、毛姆、鲁迅、安徒生或其它作家重写这句话会是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n刘慈欣、乔布斯、马斯克、马克思或其它作家重写这句话会是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n想要深入了解这句话，推荐以下的文章、书籍，并附上部分摘录：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如果用现实生活中的例子、故事或新闻来说，就是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n类似的名人名言是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n这句话相关历史和背景，并附上详尽的摘录：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n莎士比亚、毛姆、鲁迅、安徒生或其它作家曾说过相关的话：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n刘慈欣、乔布斯、马斯克、马克思或其它人曾说过相关的话：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n想要深入了解这句话，推荐以下的文章、书籍，并附上详尽的摘录：`,
   ]
   menu_all.auto_ask_chatgpt && $(() => {
     // 监听页面是否弹出工具框
