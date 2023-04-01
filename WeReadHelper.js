@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.2.0
+// @version      6.2.1
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -266,17 +266,13 @@
   // 功能8️⃣：自动询问 ChatGPT
   const prompts = [
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n可以总结内容为：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n可以用表格的方式总结观点：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如无必要，勿增实体，所以我们可以省略：`,
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如果用简单的现代汉语来说，就是：`,
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如果用现实生活中的例子来说，就是：`,
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n类似的句子还有：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n相反的观点有：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n不同生活环境，不同职业的人会有不同的视角，比如：`,
     (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n这句话相关历史和背景是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n不同的国家对这句的看法会是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n莎士比亚、毛姆、鲁迅、刘慈欣、乔布斯、马斯克、马克思、安徒生或其它作家重写这句话会是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n想要深入了解这句话，推荐以下的文章、书籍：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n莎士比亚、毛姆、鲁迅、安徒生或其它作家重写这句话会是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n刘慈欣、乔布斯、马斯克、马克思或其它作家重写这句话会是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n想要深入了解这句话，推荐以下的文章、书籍，并附上部分摘录：`,
   ]
   menu_all.auto_ask_chatgpt && $(() => {
     // 监听页面是否弹出工具框
