@@ -8,8 +8,6 @@
 
 <a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/greasyfork/l/420774?color=&label=License"/> </a>
 
-[![AI Assisted Yes](https://img.shields.io/badge/AI%20Assisted-Yes-green?style=for-the-badge)](https://github.com/mefengl/made-by-ai)
-
 读书人用的脚本
 
 > [安装地址](https://greasyfork.org/zh-CN/scripts/420774)
