@@ -1,5 +1,7 @@
 # 📘 微信读书阅读助手
 
+<img src="https://pub-a57c0ab473094e398e91626882bd3cb6.r2.dev/grid_0.png" width="550">
+
 <a href="https://github.com/mefengl/wereadhelper"> <img src="https://img.shields.io/github/stars/mefengl/wereadhelper?style=social"/> </a>
 [![Follow @mefengl on GitHub](https://img.shields.io/github/followers/mefengl?label=Follow%20%40mefengl&style=social "GitHub")](https://github.com/mefengl)
 
