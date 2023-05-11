@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.2.5
+// @version      6.3.0
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -355,6 +355,9 @@
       if (!sendButton) return;
       sendButton.addEventListener('mousedown', callback);
     },
+    isGenerating: function () {
+      return this.getSubmitButton()?.firstElementChild?.childElementCount === 3;
+    },
   };
 
   let last_trigger_time = +new Date();
@@ -378,7 +381,7 @@
               if (!firstTime) {
                 await new Promise(resolve => setTimeout(resolve, 2000));
               }
-              if (!firstTime && chatgpt.getStopGeneratingButton() !== undefined) {
+              if (!firstTime && chatgpt.isGenerating()) {
                 continue;
               }
               firstTime = false;
