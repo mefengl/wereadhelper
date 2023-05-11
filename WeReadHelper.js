@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.2.4
+// @version      6.2.5
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -265,11 +265,10 @@
 
   // 功能8️⃣：自动询问 ChatGPT
   const prompts = [
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如果用简单的现代汉语来说，就是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n如果用现实生活中的例子、故事或新闻来说，就是：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n这句话相关历史和背景，并附上详尽的摘录：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n相关的观点或类似的故事：`,
-    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n想要深入了解这句话，推荐以下的文章、书籍，并附上详尽的摘录：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n用简单的现代汉语来说，就是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n用现实生活中的例子、故事或新闻来说，就是：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n这句话相关历史和背景：`,
+    (book_title, sentence) => `《${book_title}》中的句子：${sentence}\n想要深入了解这句话，推荐别的句子、文章、书籍，附上理由：`,
   ]
   menu_all.auto_ask_chatgpt && $(() => {
     // 监听页面是否弹出工具框
