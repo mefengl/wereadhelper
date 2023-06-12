@@ -4,6 +4,7 @@
 
 <a href="https://github.com/mefengl/wereadhelper"> <img src="https://img.shields.io/github/stars/mefengl/wereadhelper?style=social"/> </a>
 [![Follow @mefengl on GitHub](https://img.shields.io/github/followers/mefengl?label=Follow%20%40mefengl&style=social "GitHub")](https://github.com/mefengl)
+[![Twitter Follow](https://img.shields.io/twitter/follow/mefengl?style=social)](https://twitter.com/mefengl)
 
 <a href="https://greasyfork.org/zh-CN/scripts/420774/stats"> <img src="https://img.shields.io/greasyfork/dd/420774"/> </a>
 <a href="https://greasyfork.org/zh-CN/scripts/420774/stats"> <img src="https://img.shields.io/greasyfork/dt/420774"/> </a>
