@@ -43,6 +43,8 @@
 
 > 不用点提交按钮，`Ctrl + Enter` 也可以提交想法了
 
+> 阅读界面，鼠标中键点击翻页（可在设置中关闭）
+
 ## 设置 ⚙
 
 > <img src="https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMVpoQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--464ba7e421f20ee328439e9e0dca9bfb9aac8899/SCR-20220924-r52.png?locale=zh-CN" width="450">

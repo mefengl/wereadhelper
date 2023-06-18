@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.3.1
+// @version      6.4.1
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -82,6 +82,7 @@
     simplify_underline: true,
     play_turning_sound: false,
     simplify_main_page: true,
+    middle_click_to_next_page: true,
   };
 
   // 只对使用 chatgpt 的读书人开启复制自动询问
@@ -152,6 +153,18 @@
           // 添加新的
           menu_id[name] = GM_registerMenuCommand(
             " 自动询问：" + (value ? "✅" : "❌"),
+            () => {
+              menu_all[name] = !menu_all[name];
+              GM_setValue("menu_all", menu_all);
+              // 调用时触发，刷新菜单
+              update_menu();
+            }
+          );
+          break;
+        case "middle_click_to_next_page":
+          // 添加新的
+          menu_id[name] = GM_registerMenuCommand(
+            " 中键翻页：" + (value ? "✅" : "❌"),
             () => {
               menu_all[name] = !menu_all[name];
               GM_setValue("menu_all", menu_all);
@@ -249,7 +262,8 @@
     })
   }, 200);
 
-  // 功能7️⃣：Ctrl/Command + Enter，提交笔记（不用点提交按钮）
+  // 功能7️⃣：快捷键
+  // Ctrl/Command + Enter，提交笔记（不用点提交按钮）
   {
     // 监听页面是否是想法页面
     const handleListenChange = (mutationsList) => {
@@ -261,6 +275,16 @@
     };
     const mutationObserver = new MutationObserver(handleListenChange);
     mutationObserver.observe(document.body, { attributes: true, subtree: true });
+  }
+  // 鼠标中键，下一页/章
+  if (location.pathname.includes("reader") && menu_all.middle_click_to_next_page) {
+    window.addEventListener('mousedown', e => {
+      if (e.button === 1) {
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', code: 'ArrowRight', keyCode: 39, charCode: 0 }));
+      }
+    });
+    // 鼠标中键点击链接，不用下一页/章
+    [...document.querySelectorAll('a')].forEach(a => a.addEventListener('mousedown', e => e.stopPropagation()));
   }
 
   // 功能8️⃣：自动询问 ChatGPT
