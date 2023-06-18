@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手-马克笔款
 // @namespace   https://github.com/mefengl
-// @version      6.4.1
+// @version      6.4.3
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -87,94 +87,32 @@
 
   // 只对使用 chatgpt 的读书人开启复制自动询问
   $(() => location.href.includes("chat.openai") && GM_setValue("openai", true) && console.log("开启复制自动询问"));
-  if (GM_getValue("openai") == true) {
-    console.log("开启菜单");
-    default_menu_all.auto_ask_chatgpt = false;
+  if (GM_getValue("openai") == true) default_menu_all.auto_ask_chatgpt = false;
+
+  const menu_all = { ...default_menu_all, ...GM_getValue("menu_all", {}) };
+  const menu_id = GM_getValue("menu_id", {});
+
+  function toggleSetting(name) {
+    menu_all[name] = !menu_all[name];
+    GM_setValue("menu_all", menu_all);
   }
 
-  const menu_all = GM_getValue("menu_all", default_menu_all);
-  // 检查是否有新增菜单
-  for (let name in default_menu_all) {
-    console.log(name);
-    if (!(name in menu_all)) {
-      menu_all[name] = default_menu_all[name];
-    }
+  function updateMenuCommand(name, description, needReload = false) {
+    if (menu_id[name]) GM_unregisterMenuCommand(menu_id[name]);
+    menu_id[name] = GM_registerMenuCommand(description + (menu_all[name] ? "✅" : "❌"), () => {
+      toggleSetting(name);
+      update_menu();
+      if (needReload) location.reload();
+    });
   }
-  const menu_id = GM_getValue("menu_id", {});
+
   function update_menu() {
-    for (let name in menu_all) {
-      const value = menu_all[name];
-      // 卸载原来的
-      if (menu_id[name]) {
-        GM_unregisterMenuCommand(menu_id[name]);
-      }
-      switch (name) {
-        case "simplify_underline":
-          // 添加新的
-          menu_id[name] = GM_registerMenuCommand(
-            " 简化划线：" + (value ? "✅" : "❌"),
-            () => {
-              menu_all[name] = !menu_all[name];
-              GM_setValue("menu_all", menu_all);
-              // 调用时触发，刷新菜单
-              update_menu();
-              // 该设置需刷新生效
-              location.reload();
-            }
-          );
-          break;
-        case "play_turning_sound":
-          // 添加新的
-          menu_id[name] = GM_registerMenuCommand(
-            " 翻页声：" + (value ? "✅" : "❌"),
-            () => {
-              menu_all[name] = !menu_all[name];
-              GM_setValue("menu_all", menu_all);
-              // 调用时触发，刷新菜单
-              update_menu();
-            }
-          );
-          break;
-        case "simplify_main_page":
-          // 添加新的
-          menu_id[name] = GM_registerMenuCommand(
-            " 简化首页：" + (value ? "✅" : "❌"),
-            () => {
-              menu_all[name] = !menu_all[name];
-              GM_setValue("menu_all", menu_all);
-              // 调用时触发，刷新菜单
-              update_menu();
-              // 该设置需刷新生效
-              location.reload();
-            }
-          );
-          break;
-        case "auto_ask_chatgpt":
-          // 添加新的
-          menu_id[name] = GM_registerMenuCommand(
-            " 自动询问：" + (value ? "✅" : "❌"),
-            () => {
-              menu_all[name] = !menu_all[name];
-              GM_setValue("menu_all", menu_all);
-              // 调用时触发，刷新菜单
-              update_menu();
-            }
-          );
-          break;
-        case "middle_click_to_next_page":
-          // 添加新的
-          menu_id[name] = GM_registerMenuCommand(
-            " 中键翻页：" + (value ? "✅" : "❌"),
-            () => {
-              menu_all[name] = !menu_all[name];
-              GM_setValue("menu_all", menu_all);
-              // 调用时触发，刷新菜单
-              update_menu();
-            }
-          );
-          break;
-      }
-    };
+    updateMenuCommand("simplify_underline", " 简化划线：", true);
+    updateMenuCommand("play_turning_sound", " 翻页声：");
+    updateMenuCommand("simplify_main_page", " 简化首页：", true);
+    updateMenuCommand("auto_ask_chatgpt", " 自动询问：");
+    updateMenuCommand("middle_click_to_next_page", " 中键翻页：", true);
+
     GM_setValue("menu_id", menu_id);
   }
   update_menu();
