@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.4.6
+// @version      6.4.7
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -150,8 +150,10 @@
   let dailyCount = JSON.parse(localStorage.getItem("dailyCount") || "{}");
 
   function trackReading() {
-    (isOdd ? oddSound : evenSound).play();
-    isOdd = !isOdd;
+    if (menu_all.play_turning_sound) {
+      (isOdd ? oddSound : evenSound).play();
+      isOdd = !isOdd;
+    }
 
     let today = new Date().toISOString().split('T')[0];
     dailyCount[today] = (dailyCount[today] || 0) + 1;
@@ -203,8 +205,10 @@
   if (location.pathname.includes("reader") && menu_all.middle_click_to_next_page) {
     const triggerNextPage = () => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', code: 'ArrowRight', keyCode: 39, charCode: 0 }));
-      (isOdd ? oddSound : evenSound).play();
-      isOdd = !isOdd;
+      if (menu_all.play_turning_sound) {
+        (isOdd ? oddSound : evenSound).play();
+        isOdd = !isOdd;
+      }
     }
     window.addEventListener('mousedown', e => e.button === 1 && triggerNextPage());
     // 鼠标中键点击链接，不用触发
