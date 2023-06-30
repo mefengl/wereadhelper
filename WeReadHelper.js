@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.4.7
+// @version      6.4.8
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -213,9 +213,6 @@
     window.addEventListener('mousedown', e => e.button === 1 && triggerNextPage());
     // 鼠标中键点击链接，不用触发
     [...document.querySelectorAll('a')].forEach(a => a.addEventListener('mousedown', e => e.stopPropagation()));
-    // Trackpad 两指捏合，下一节/页/章
-    const addZoomListener = cb => window.addEventListener('wheel', e => e.ctrlKey && e.deltaY > 10 && (e.preventDefault(), cb(e.deltaY)), false);
-    addZoomListener(deltaY => deltaY > 10 && triggerNextPage());
   }
 
   // 功能8️⃣：自动询问 ChatGPT
