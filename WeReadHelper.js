@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace   https://github.com/mefengl
-// @version      6.4.10
+// @version      6.4.11
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
