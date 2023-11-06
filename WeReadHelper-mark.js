@@ -36,7 +36,7 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
   // 功能2️⃣：自动隐藏顶栏和侧边栏，上划显示，下滑隐藏
   let windowTop = 0
   $(window).scroll(() => {
-    const scrollS = $(this).scrollTop()
+    const scrollS = $(window).scrollTop()
     if (scrollS >= windowTop + 100) {
       // 下滑隐藏
       $('.readerTopBar, .readerControls').fadeOut()
@@ -51,11 +51,12 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
 
   // 功能3️⃣：一键搜📗豆瓣阅读或📙得到阅读
   // 监听页面是否是搜索页面
+  const get_searchBox = () => $('.search_input_text')[0]
   const handleListenChange = (mutationsList) => {
     const className = mutationsList[0].target.className
     if (/search_show/.test(className)) {
       // 开始添加按钮
-      if (get_searchBox().parentElement.lastChild.tagName == 'BUTTON')
+      if (get_searchBox().parentElement.lastChild.tagName === 'BUTTON')
         return;
       // 添加按钮们
       [
@@ -81,8 +82,6 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
   const mutationObserver = new MutationObserver(handleListenChange)
   mutationObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] })
 
-  const get_searchBox = () => $('.search_input_text')[0]
-
   // 菜单更新的逻辑
   const default_menu_all = {
     simplify_underline: true,
@@ -92,8 +91,8 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
   }
 
   // 只对使用 chatgpt 的读书人开启复制自动询问
-  $(() => location.href.includes('chat.openai') && GM_setValue('openai', true) && console.log('开启复制自动询问'))
-  if (GM_getValue('openai') == true)
+  $(() => location.href.includes('chat.openai') && GM_setValue('openai', true))
+  if (GM_getValue('openai'))
     default_menu_all.auto_ask_chatgpt = false
 
   const menu_all = { ...default_menu_all, ...GM_getValue('menu_all', {}) }
@@ -155,20 +154,11 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
     pageSound1,
     pageSound2,
   ].map(src => new Audio(src))
-  // 统计阅读章节数功能尚在考虑，可在console查看
-  const dailyCount = JSON.parse(localStorage.getItem('dailyCount') || '{}')
-
   function trackReading() {
     if (menu_all.play_turning_sound) {
       (isOdd ? oddSound : evenSound).play()
       isOdd = !isOdd
     }
-
-    const today = new Date().toISOString().split('T')[0]
-    dailyCount[today] = (dailyCount[today] || 0) + 1
-
-    localStorage.setItem('dailyCount', JSON.stringify(dailyCount))
-    console.log(dailyCount[today])
   }
 
   document.body.addEventListener('click', (e) => {
@@ -206,7 +196,7 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
     const handleListenChange = (mutationsList) => {
       const className = mutationsList[1].target.className;
       /readerWriteReviewPanel/.test(className) && $('#WriteBookReview').keydown((e) => {
-        const isCtrlEnter = (e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey)
+        const isCtrlEnter = (e.keyCode === 10 || e.keyCode === 13) && (e.ctrlKey || e.metaKey)
         isCtrlEnter && $('.writeReview_submit_button').click()
       })
     }
@@ -248,7 +238,6 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
             const copied_text = await navigator.clipboard.readText()
             const book_title = $('.readerTopBar_title_link').text()
             const prompt_texts = prompts.map(p => p(book_title, copied_text))
-            console.log(prompt_texts)
             // 保存到本地
             GM_setValue('prompt_texts', [])
             GM_setValue('prompt_texts', prompt_texts)
@@ -333,7 +322,7 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
   $(() => {
     if (location.href.includes('chat.openai')) {
       GM_addValueChangeListener('prompt_texts', (name, old_value, new_value) => {
-        if (new_value.length == 0)
+        if (!new_value.length)
           return
 
         if (+new Date() - last_trigger_time < 500)
