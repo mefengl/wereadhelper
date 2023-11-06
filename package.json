@@ -1,6 +1,12 @@
 {
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "^1.1.0",
     "@types/jquery": "latest",
-    "@types/tampermonkey": "latest"
+    "@types/tampermonkey": "latest",
+    "eslint": "^8.53.0"
   }
 }
