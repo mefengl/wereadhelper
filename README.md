@@ -2,15 +2,6 @@
 
 <img src="https://pub-a57c0ab473094e398e91626882bd3cb6.r2.dev/grid_0.png" width="550">
 
-<a href="https://github.com/mefengl/wereadhelper"> <img src="https://img.shields.io/github/stars/mefengl/wereadhelper?style=social"/> </a>
-[![Follow @mefengl on GitHub](https://img.shields.io/github/followers/mefengl?label=Follow%20%40mefengl&style=social "GitHub")](https://github.com/mefengl)
-[![Twitter Follow](https://img.shields.io/twitter/follow/mefengl?style=social)](https://twitter.com/mefengl)
-
-<a href="https://greasyfork.org/zh-CN/scripts/420774/stats"> <img src="https://img.shields.io/greasyfork/dd/420774"/> </a>
-<a href="https://greasyfork.org/zh-CN/scripts/420774/stats"> <img src="https://img.shields.io/greasyfork/dt/420774"/> </a>
-
-<a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/greasyfork/l/420774?color=&label=License"/> </a>
-
 读书人用的脚本
 
 > [安装地址](https://greasyfork.org/zh-CN/scripts/420774)
@@ -60,3 +51,11 @@
 > 🥰 自来水友链， [豆瓣读书助手](https://greasyfork.org/zh-CN/scripts/412479-ebooks-assistant) 帮我许多
 
 > 🎈 本脚本早期代码参考了 xvusrmqj 的“微信读书加宽度”和 Lossj 的“微信读书沉浸式阅读”的功能
+
+## 最后 🫧
+
+[🦜 Doozy: AI Made Easy](https://chromewebstore.google.com/detail/doozy-ai-made-easy/okifoaikfmpfcamplcfjkpdnhfodpkil)
+> 一个目前还在开发中的 Chrome 扩展，现在能做的有自动发送当前网页文章内容到 ChatGPT 去翻译，去总结，还在开发中，欢迎体验~
+
+[Join Discord Server | 加入 Discord 讨论 | Discordのディスカッションに参加する](https://discord.gg/pwTKpnc2sF)
+> 一个 Discord 服务器，这里会回复的快一点，欢迎加入讨论~
