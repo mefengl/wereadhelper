@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace    https://github.com/mefengl
-// @version      6.4.13
+// @version      6.4.14
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -185,7 +185,23 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
       $('.readerTopBar').stop().css({ maxWidth: '1000px', opacity: '0.6' })
       $('.readerControls').stop().css('opacity', '0.8')
       // 解决有时用户头像无法正常工作的问题
-      setTimeout(() => $('.wr_avatar_img').attr('src').includes('wx.qlogo.cn') || location.reload(), 2500)
+      // 设置一个最大重载次数
+      const MAX_RELOAD_COUNT = 3;
+      // 从 localStorage 获取当前重载次数
+      let reloadCount = parseInt(localStorage.getItem('reloadCount')) || 0;
+      setTimeout(() => {
+        if (!$('.wr_avatar_img').attr('src').includes('wx.qlogo.cn')) {
+          if (reloadCount < MAX_RELOAD_COUNT) {
+            localStorage.setItem('reloadCount', ++reloadCount);
+            location.reload();
+          } else {
+            localStorage.removeItem('reloadCount');
+            console.error('Reached max reload count, not reloading anymore.');
+          }
+        } else {
+          localStorage.removeItem('reloadCount');
+        }
+      }, 2500);
     })
   }, 200)
 
