@@ -4,9 +4,9 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^1.1.0",
+    "@antfu/eslint-config": "^2.4.5",
     "@types/jquery": "latest",
     "@types/tampermonkey": "latest",
-    "eslint": "^8.53.0"
+    "eslint": "^8.55.0"
   }
 }
