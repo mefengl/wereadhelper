@@ -186,22 +186,24 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
       $('.readerControls').stop().css('opacity', '0.8')
       // 解决有时用户头像无法正常工作的问题
       // 设置一个最大重载次数
-      const MAX_RELOAD_COUNT = 3;
+      const MAX_RELOAD_COUNT = 3
       // 从 localStorage 获取当前重载次数
-      let reloadCount = parseInt(localStorage.getItem('reloadCount')) || 0;
+      let reloadCount = Number.parseInt(localStorage.getItem('reloadCount')) || 0
       setTimeout(() => {
         if (!$('.wr_avatar_img').attr('src').includes('wx.qlogo.cn')) {
           if (reloadCount < MAX_RELOAD_COUNT) {
-            localStorage.setItem('reloadCount', ++reloadCount);
-            location.reload();
-          } else {
-            localStorage.removeItem('reloadCount');
-            console.error('Reached max reload count, not reloading anymore.');
+            localStorage.setItem('reloadCount', ++reloadCount)
+            location.reload()
           }
-        } else {
-          localStorage.removeItem('reloadCount');
+          else {
+            localStorage.removeItem('reloadCount')
+            console.error('Reached max reload count, not reloading anymore.')
+          }
         }
-      }, 2500);
+        else {
+          localStorage.removeItem('reloadCount')
+        }
+      }, 2500)
     })
   }, 200)
 
