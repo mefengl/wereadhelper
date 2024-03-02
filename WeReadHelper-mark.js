@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手-马克笔款
 // @namespace    https://github.com/mefengl
-// @version      6.4.15
+// @version      6.4.16
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -132,7 +132,16 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
       const className = mutationsList[0].target.className
       if (/reader_toolbar_container/.test(className)) {
         // 去除划线颜色选择框
-        $('.reader_toolbar_color_container').remove()
+        // 简单的实现，去除 10s 内出现的颜色选择框
+        let count = 0;
+        let intervalId = setInterval(() => {
+            if (count >= 100) {
+                clearInterval(intervalId);
+            } else {
+                $('.reader_toolbar_color_container').remove();
+                count++;
+            }
+        }, 100);
         // 去除划线工具栏多余的按钮
         $('.underlineStraight, .underlineHandWrite, .query').remove()
         // 在这里完成简化想法页面的功能
