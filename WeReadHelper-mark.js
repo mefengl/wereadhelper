@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手-马克笔款
 // @namespace    https://github.com/mefengl
-// @version      6.4.16
+// @version      6.4.18
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -152,6 +152,13 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
         $('.removeUnderline').length
           ? $('.underlineBg').hide()
           : $('.underlineBg').show()
+        // 划线后关闭工具栏
+        $('.toolbarItem.underlineStraight, .toolbarItem.underlineBg, .toolbarItem.underlineHandWrite')
+          .one('click', () => {
+            $('.reader_toolbar_container').remove()
+            // 划线高亮去除
+            $('.wr_selection').remove()
+          })
       }
     }
     const mutationObserver = new MutationObserver(handleListenChange)
