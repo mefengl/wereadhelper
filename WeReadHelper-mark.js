@@ -133,15 +133,16 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
       if (/reader_toolbar_container/.test(className)) {
         // 去除划线颜色选择框
         // 简单的实现，去除 10s 内出现的颜色选择框
-        let count = 0;
-        let intervalId = setInterval(() => {
-            if (count >= 100) {
-                clearInterval(intervalId);
-            } else {
-                $('.reader_toolbar_color_container').remove();
-                count++;
-            }
-        }, 100);
+        let count = 0
+        const intervalId = setInterval(() => {
+          if (count >= 100) {
+            clearInterval(intervalId)
+          }
+          else {
+            $('.reader_toolbar_color_container').remove()
+            count++
+          }
+        }, 100)
         // 去除划线工具栏多余的按钮
         $('.underlineStraight, .underlineHandWrite, .query').remove()
         // 在这里完成简化想法页面的功能
