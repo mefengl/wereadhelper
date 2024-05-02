@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手-马克笔款
 // @namespace    https://github.com/mefengl
-// @version      6.4.18
+// @version      6.4.19
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -203,7 +203,7 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
       $('.readerControls').stop().css('opacity', '0.8')
       // 解决有时用户头像无法正常工作的问题
       // 设置一个最大重载次数
-      const MAX_RELOAD_COUNT = 3
+      const MAX_RELOAD_COUNT = 1
       // 从 localStorage 获取当前重载次数
       let reloadCount = Number.parseInt(localStorage.getItem('reloadCount')) || 0
       setTimeout(() => {
