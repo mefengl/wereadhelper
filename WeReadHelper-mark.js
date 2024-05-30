@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手-马克笔款
 // @namespace    https://github.com/mefengl
-// @version      6.5.0
+// @version      6.6.0
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -197,8 +197,8 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
         $('.ranking_topCategory_container, .recommend_preview_container, .app_footer_copyright').remove()
       mainPageRemover()
       setTimeout(mainPageRemover, 800)
-      // 阅读界面的听书和手机阅读的按钮
-      $('.lecture, .download').hide()
+      // 阅读界面的听书，手机阅读，双栏阅读的按钮
+      $('.lecture, .download, .isNormalReader').hide()
       $('.readerTopBar').stop().css({ maxWidth: '1000px', opacity: '0.6' })
       $('.readerControls').stop().css('opacity', '0.8')
     })
