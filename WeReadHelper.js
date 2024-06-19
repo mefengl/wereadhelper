@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         📘微信读书阅读助手
 // @namespace    https://github.com/mefengl
-// @version      6.6.0
+// @version      6.6.3
 // @description  读书人用的脚本
 // @author       mefengl
 // @match        https://weread.qq.com/*
@@ -197,8 +197,8 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
         $('.ranking_topCategory_container, .recommend_preview_container, .app_footer_copyright').remove()
       mainPageRemover()
       setTimeout(mainPageRemover, 800)
-      // 阅读界面的听书，手机阅读，双栏阅读的按钮
-      $('.lecture, .download, .isNormalReader').hide()
+      // 阅读界面的听书，手机阅读，微信输入法的按钮
+      $('.lecture, .download, .wetype').hide()
       $('.readerTopBar').stop().css({ maxWidth: '1000px', opacity: '0.6' })
       $('.readerControls').stop().css('opacity', '0.8')
     })
@@ -210,7 +210,7 @@ const pageSound2 = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4L
     // 监听页面是否是想法页面
     const handleListenChange = (mutationsList) => {
       const className = mutationsList[1].target.className;
-      /readerWriteReviewPanel/.test(className) && $('#WriteBookReview').keydown((e) => {
+      /readerWriteReviewPanel/.test(className) && $('.readerWriteReviewPanel #WriteBookReview').keydown((e) => {
         const isCtrlEnter = (e.keyCode === 10 || e.keyCode === 13) && (e.ctrlKey || e.metaKey)
         isCtrlEnter && $('.writeReview_submit_button').click()
       })
